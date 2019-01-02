@@ -24,6 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/add-user','HomeController@add_user');
+Route::post('/add-user','HomeController@create_user');
 Route::get('/profile','HomeController@profile');
 
 //
@@ -42,3 +43,6 @@ Route::get('/profile','HomeController@profile');
 //Route::post('/civilian-update',['as' => 'civilian-update', 'uses' => 'CiviliansController@update']);
 //Route::post('/civilian-store',['as' => 'civilian-store', 'uses' => 'CiviliansController@store']);
 
+Route::get('/hierarchy', 'HomeController@usersHierarchy')->name('home');
+
+Route::post('/invite-user', 'InviteUserController@usersHierarchy')->name('home');
