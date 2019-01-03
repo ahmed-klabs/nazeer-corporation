@@ -74,7 +74,9 @@
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                @if(Auth()->user()->role == "admin")
                 <li><a href="/add-user"><i class="fa fa-user-plus"></i> <span>Invite Member</span></a></li>
+                @endif
                 <li><a href="/hierarchy"><i class="fa fa-sitemap"></i> <span>Members</span></a></li>
                 <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
             </ul>

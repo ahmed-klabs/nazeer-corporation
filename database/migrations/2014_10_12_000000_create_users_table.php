@@ -28,11 +28,12 @@ class CreateUsersTable extends Migration
             $table->string('sponsor_code');
             $table->string('blood_group');
             $table->string('joining_code');
-            $table->string('joining_date');
+            $table->date('joining_date');
             $table->string('nominee');
             $table->string('nominee_cnic');
             $table->string('nominee_contact');
             $table->string('slip_number');
+            $table->string('role');
             $table->integer('amount');
             $table->integer('points');
             $table->rememberToken();
