@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\User;
+use Auth;
 use App\Http\Controllers\Carbon\Carbon ;
 
 class HomeController extends Controller
@@ -26,7 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $users = User::select('id','name','contact','amount','points')->where('role','user')->get();
+
+//        echo '<pre>';
+//        print_r($users);
+//        exit;
+        return view('dashboard', compact('users'));
     }
     public function add_user(){
         return view('invite-user');
@@ -37,10 +43,38 @@ class HomeController extends Controller
     }
 
     public function profile(){
-        echo "Profile";
-        exit;
+        $userDetail = User::find(Auth::user()->id);
+
+        return view('profile', compact('userDetail'));
+    }
+    public function user_profile($id){
+        $userDetail = User::find($id);
+
+        return view('profile', compact('userDetail'));
     }
     public function create_user(Request $request){
+
+//        $validatedData = $request->validate([
+//            'name' => 'required|max:255',
+//            'father_name' => 'required|max:255',
+//            'cnic' => 'required',
+//            'dob' => 'required',
+//            'address' => 'required',
+//            'contact' => 'required',
+//            'sponsor_code' => 'required',
+//            'blood_group' => 'required',
+//            'joining_code' => 'required',
+//            'joining_date' => 'required',
+//            'nominee' => 'required',
+//            'nomineecnic' => 'required',
+//            'nominee_contact' => 'required',
+//            'slip_number' => 'required',
+//            'points' => 'required',
+//            'email' => 'required',
+//            'amount' => 'required',
+//            'password' => 'required'
+//        ]);
+
 
         $user = new User();
 
@@ -65,7 +99,7 @@ class HomeController extends Controller
         $user->password = bcrypt($request->pwd);
 
         $user->save();
-
-        return view('dashboard');
+        // Can send email to
+        return redirect('/home');
     }
 }

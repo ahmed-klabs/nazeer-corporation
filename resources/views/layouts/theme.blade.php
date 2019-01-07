@@ -78,7 +78,7 @@
                 <li><a href="/add-user"><i class="fa fa-user-plus"></i> <span>Invite Member</span></a></li>
                 @endif
                 <li><a href="/hierarchy"><i class="fa fa-sitemap"></i> <span>Members</span></a></li>
-                <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                <li><a href="/profile"><i class="fa fa-user"></i> <span>Profile</span></a></li>
             </ul>
         </section>
     </aside>
