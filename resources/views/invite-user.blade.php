@@ -125,6 +125,26 @@
         </section>
     </div>
 <script>
+    // Sponsor code Validation
+    $(document).on('blur', '#sponsor_code', function () {
+        var sponsorCode = $(this).val();
+
+        $.ajax({
+            url: '/checkChild',
+            type: 'POST',
+            data: {"_token": "{{ csrf_token() }}", sponsorCode:sponsorCode},
+            dataType: 'JSON',
+            success: function (response) {
+                // you will get response from your php page (what you echo or print)
+                if(response == 3){
+                    // Need to create validation UI
+                    $('#sponsor_code').style.borderColor = "red";
+                    $('#sponsor_code').focus();
+                    alert('child limit reached');
+                }
+            }
+        });
+    });
     $(document).ready(function () {
 
         // contact number mask

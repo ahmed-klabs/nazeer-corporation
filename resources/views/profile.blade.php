@@ -18,84 +18,53 @@
                 </div>
                 <div class="box-body">
                     <div class="col-md-6">
-                        <table class="table table-striped">
-                            <tr>
-                                <td>Name</td>
-                                <td>{{$userDetail['name']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Father Name</td>
-                                <td>{{$userDetail['name']}}</td>
-                            </tr>
-                            <tr>
-                                <td>CNIC</td>
-                                <td>{{$userDetail['cnic']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Date of Birth</td>
-                                <td>{{$userDetail['dob']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Address</td>
-                                <td>{{$userDetail['address']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Contact</td>
-                                <td>{{$userDetail['contact']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Sponsor Code</td>
-                                <td>{{$userDetail['sponsor_code']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Blood Group</td>
-                                <td>{{$userDetail['blood_group']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Joining Code</td>
-                                <td>{{$userDetail['joining_code']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Joining Date</td>
-                                <td>{{$userDetail['joining_date']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Nominee Name</td>
-                                <td>{{$userDetail['nominee']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Nominee CNIC</td>
-                                <td>{{$userDetail['nominee_cnic']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Nominee Contact</td>
-                                <td>{{$userDetail['nominee_contact']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Slip Number</td>
-                                <td>{{$userDetail['slip_number']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{{$userDetail['email']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Amount</td>
-                                <td>{{$userDetail['amount']}}</td>
-                            </tr>
-                            <tr>
-                                <td>Points</td>
-                                <td>{{$userDetail['points']}}</td>
-                            </tr>
-                            {{--<tr>--}}
-                                {{--<td class="text-center">--}}
-                                    {{--<a class="btn btn-info" href="/home">Back</a>--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                        </table>
+                        <div class="main-tbl">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td>Name</td>
+                                    <td>{{$userDetail['name']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Points</td>
+                                    <td>{{$userDetail['points']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Percentage</td>
+                                    <td>{{ "xyz %" }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>{{$userDetail['amount']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>No Of Customer Under You</td>
+                                    <td>{{ $childCount }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Your Percentage From Customer</td>
+                                    <td>{{ "xyz %" }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="sub-tbl">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td><b>Total Percentage</b></td>
+                                    <td>{{ "xyz%" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Amount</b></td>
+                                    <td>{{ "xyz PKR" }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Date Of Checque</b></td>
+                                    <td>{{ $userDetail->joining_date }}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <div>
+                        <div class="profile-image">
                             <img src="{{ asset('images/max-rehkopf.png') }}">
                         </div>
                     </div>
@@ -103,4 +72,22 @@
             </div>
         </section>
     </div>
+    <style>
+        .main-tbl{
+            width: 450px;
+        }
+        .sub-tbl{
+            margin-top: 100px;
+            width: 250px;
+        }
+        .profile-image{
+            width: 210px;
+            margin: 0 auto;
+        }
+        .profile-image img{
+            max-width: 200px;
+            border-radius: 50%;
+            border: 1px solid #888;
+        }
+    </style>
 @endsection

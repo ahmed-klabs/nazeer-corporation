@@ -37,10 +37,6 @@ class HomeController extends Controller
 
         }
 
-
-//        echo '<pre>';
-//        print_r($users);
-//        exit;
         return view('dashboard', compact('users'));
     }
 
@@ -49,14 +45,30 @@ class HomeController extends Controller
     }
 
     public function profile(){
+        // for child Count
+        $sponser_code = Auth::User()->joining_code;
+
+        $childCount = User::where('sponsor_code', $sponser_code)->count();
         $userDetail = User::find(Auth::user()->id);
 
-        return view('profile', compact('userDetail'));
+        return view('profile', compact('userDetail','childCount'));
     }
     public function user_profile($id){
+
+        // for child Count
+        $sponser_code = Auth::User()->joining_code;
+        $childCount = User::where('sponsor_code', $sponser_code)->count();
+
         $userDetail = User::find($id);
 
-        return view('profile', compact('userDetail'));
+        return view('profile', compact('userDetail','childCount'));
+    }
+    // sponsor Code Validation
+    public function checkChild(Request $request){
+
+        $sponsorCode = $request->sponsorCode;
+        $childCount = User::where('sponsor_code', $sponsorCode)->count();
+        return response()->json($childCount);
     }
     public function create_user(Request $request){
         $user = new User();
