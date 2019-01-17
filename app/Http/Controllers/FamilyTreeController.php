@@ -20,16 +20,19 @@ class FamilyTreeController extends Controller
 
 //        $childs = User::where('sponsor_code', $childs->)->get();
 
-        if(is_array($childs)) {
+        if(!empty($childs)) {
             foreach ($childs as $child) {
                 $childData[] = $child;
-                $grandChild[$child['name']] = User::where('sponsor_code', $child['joining_code'])->get();
+                $grandChild[$child['name']] = User::where('sponsor_code', $child->joining_code)->get();
 
             }
         }
         else {
             $childData = [];
+            $grandChild = [];
         }
+
+//        return $grandChild;
 
 //        $childData['loggedinUsername'] = $loggedinUsername;
 //        array_push($childData, $loggedinUsername);

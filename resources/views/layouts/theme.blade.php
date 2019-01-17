@@ -87,10 +87,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 1.0.0
+            Designed by <a href="http://www.webitizemedia.com/">Webitize Media</a>
         </div>
-        <strong>Copyright &copy; 2018-2019 <a href="http://www.webitizemedia.com/">Webitize Media</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; 2019.</strong> All right reserved
     </footer>
 </div>
 <!-- ./wrapper -->

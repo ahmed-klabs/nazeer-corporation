@@ -3,18 +3,18 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Dashboard
-                <small>it all starts here</small>
-            </h1>
-        </section>
+        {{--<section class="content-header">--}}
+            {{--<h1>--}}
+                {{--Dashboard--}}
+                {{--<small>it all starts here</small>--}}
+            {{--</h1>--}}
+        {{--</section>--}}
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">All Users</h3>
+                    <h3 class="box-title">User Profile</h3>
                 </div>
                 <div class="box-body">
                     <div class="col-md-6">
@@ -87,11 +87,11 @@
                                 <td>Points</td>
                                 <td>{{$userDetail['points']}}</td>
                             </tr>
-                            <tr>
-                                <td class="text-center">
-                                    <a class="btn btn-info" href="/home">Back</a>
-                                </td>
-                            </tr>
+                            {{--<tr>--}}
+                                {{--<td class="text-center">--}}
+                                    {{--<a class="btn btn-info" href="/home">Back</a>--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
                         </table>
                     </div>
                     <div class="col-md-6">
