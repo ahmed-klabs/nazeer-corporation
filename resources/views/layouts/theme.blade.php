@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nazeer Carporation || Admin Panel</title>
+    <title>Nazeer Carporation | Admin Panel</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -19,12 +19,15 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{!! asset('theme/dist/css/skins/_all-skins.min.css') !!}">
 
+    <link rel="stylesheet" href="{{ asset('css/jHTree.css') }}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="{!! asset('theme/plugins/jQuery/jquery-2.2.3.min.js') !!}"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -53,9 +56,9 @@
                     <li class="user user-menu">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                             document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out"></i> {{ __('Logout') }}
-                                    </a>
+                        </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -71,8 +74,11 @@
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                @if(Auth()->user()->role == "admin")
                 <li><a href="/add-user"><i class="fa fa-user-plus"></i> <span>Invite Member</span></a></li>
-                <li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                @endif
+                <li><a href="/hierarchy"><i class="fa fa-sitemap"></i> <span>Members</span></a></li>
+                <li><a href="/profile"><i class="fa fa-user"></i> <span>Profile</span></a></li>
             </ul>
         </section>
     </aside>
@@ -89,7 +95,7 @@
 </div>
 <!-- ./wrapper -->
 <!-- jQuery 2.2.3 -->
-<script src="{!! asset('theme/plugins/jQuery/jquery-2.2.3.min.js') !!}"></script>
+
 <!-- Bootstrap 3.3.6 -->
 <script src="{!! asset('theme/bootstrap/js/bootstrap.min.js') !!}"></script>
 <!-- SlimScroll -->
@@ -102,10 +108,21 @@
 <script src="{!! asset('theme/dist/js/app.min.js') !!}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{!! asset('theme/dist/js/demo.js') !!}"></script>
+<script src="{{ asset('js/main.js') }}" defer></script>
+
 <script>
     $(function () {
         $("#example1").DataTable();
 
+    });
+
+</script>
+<script>
+    $(document).on('click','#generate-pwd', function () {
+
+        var pwd = Math.random().toString(36).slice(-8);
+        console.log(pwd);
+        $('#new-user-pwd').val(pwd);
     });
 </script>
 </body>

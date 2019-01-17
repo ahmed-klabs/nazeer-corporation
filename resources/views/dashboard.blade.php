@@ -29,148 +29,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($users as $user)
                             <tr>
-                                <td>1</td>
-                                <td>Ahmed</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
+                                <td>{{ $user['id'] }}</td>
+                                <td>{{ $user['name'] }}</td>
+                                <td>{{ $user['contact'] }}</td>
+                                <td>{{ $user['amount'] }}</td>
+                                <td>{{ $user['points'] }}</td>
                                 <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Rizwan</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Tariq</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Alex</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Jimmy</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>John</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Alex</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Mortan</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Jibran Ahmed</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Ahmed Yousuf</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Ahad</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Kashif</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
-                                </td>
-                            </tr><tr>
-                                <td>1</td>
-                                <td>Tariq</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primary btn-xs">Edit</button>
+                                    <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">View</a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Rizwan</td>
-                                <td>030000998876</td>
-                                <td>40000</td>
-                                <td>40</td>
-                                <td>
-                                    <button class="btn btn-warning btn-xs">View</button>
-                                    <button class="btn btn-primarys btn-xs">Edit</button>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
