@@ -38,11 +38,11 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('cnic') ? 'has-error': ''; ?>">
                                     <label for="cnic">CNIC Number</label>
-                                    <input type="text" name="cnic" class="form-control" id="cnic" placeholder="CNIC Number" required>
+                                    <input type="text" name="cnic" class="form-control" id="cnic" placeholder="xxxxx-xxxxxxx-x" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('dob') ? 'has-error': ''; ?>">
                                     <label for="dob">Date Of Birth</label>
-                                    <input type="text" class="form-control" name="dob" id="dob" placeholder="Date Of Birth" required>
+                                    <input type="text" class="form-control" name="dob" id="dob" placeholder="dd/mm/yyyy" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('address') ? 'has-error': ''; ?>">
                                     <label for="address">Permenent Address</label>
@@ -58,15 +58,26 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('blood_group') ? 'has-error': ''; ?>">
                                     <label for="blood_group">Blood Group</label>
-                                    <input type="text" class="form-control" name="blood_group" id="blood_group" placeholder="Blood Group" required>
+                                    {{--<input type="text" class="form-control" name="blood_group" id="blood_group" placeholder="Blood Group" required>--}}
+                                    <select class="form-control" name="blood_group" id="blood_group" required>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                        <option>Unknown</option>
+                                    </select>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('joining_code') ? 'has-error': ''; ?>">
                                     <label for="joining_code">Joining Code</label>
-                                    <input type="text" class="form-control" name="joining_code" id="joining_code" value="" placeholder="Nominee Name" required>
+                                    <input type="text" class="form-control" name="joining_code" id="joining_code" value="" placeholder="" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('joining_date') ? 'has-error': ''; ?>">
                                     <label for="joining_date">Joining Date</label>
-                                    <input type="text" class="form-control" name="joining_date" id="joining_date" placeholder="Nominee Name" required>
+                                    <input type="text" class="form-control" name="joining_date" id="joining_date" placeholder="dd/mm/yyyy" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('nominee') ? 'has-error': ''; ?>">
                                     <label for="nominee">Nominee Name</label>
@@ -74,7 +85,7 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('nomineecnic') ? 'has-error': ''; ?>">
                                     <label for="nomineecnic">Nominee CNIC</label>
-                                    <input type="text" class="form-control" name="nomineecnic" id="nomineecnic" placeholder="Nominee CNIC" required>
+                                    <input type="text" class="form-control" name="nomineecnic" id="nomineecnic" placeholder="xxxxx-xxxxxxx-x" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('nominee_contact') ? 'has-error': ''; ?>">
                                     <label for="nominee_contact">Nominee Contact</label>
@@ -86,11 +97,11 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('amount') ? 'has-error': ''; ?> ">
                                     <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Amount" required>
+                                    <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('points') ? 'has-error': ''; ?> ">
                                     <label for="points">Points</label>
-                                    <input type="text" class="form-control" name="points" id="points" placeholder="Points" required>
+                                    <input type="number" class="form-control" name="points" id="points" placeholder="Points" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('email') ? 'has-error': ''; ?>">
                                     <label for="email">Email</label>
@@ -115,6 +126,38 @@
     </div>
 <script>
     $(document).ready(function () {
+
+//        $('input#contact').mask('0000-0000000');
+
+        document.getElementById('contact').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '' + x[3] : '');
+        });
+
+        document.getElementById('nominee_contact').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '' + x[3] : '');
+        });
+
+        document.getElementById('cnic').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,7})(\d{0,1})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        document.getElementById('nomineecnic').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,7})(\d{0,1})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        document.getElementById('dob').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '/' + x[2] + (x[3] ? '/' + x[3] : '');
+        });
+
+        document.getElementById('joining_date').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '' + x[1] + '/' + x[2] + (x[3] ? '/' + x[3] : '');
+        });
 
         var pwd = Math.random().toString(36).slice(-8);
         console.log(pwd);

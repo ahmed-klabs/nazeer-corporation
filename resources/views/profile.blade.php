@@ -65,7 +65,7 @@
                             </tr>
                             <tr>
                                 <td>Nominee CNIC</td>
-                                <td>{{$userDetail['nomineecnic']}}</td>
+                                <td>{{$userDetail['nominee_cnic']}}</td>
                             </tr>
                             <tr>
                                 <td>Nominee Contact</td>
