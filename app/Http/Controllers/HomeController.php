@@ -34,12 +34,9 @@ class HomeController extends Controller
 //        exit;
         return view('dashboard', compact('users'));
     }
+
     public function add_user(){
         return view('invite-user');
-    }
-
-    public function usersHierarchy(){
-        return view('family-tree');
     }
 
     public function profile(){
@@ -53,29 +50,6 @@ class HomeController extends Controller
         return view('profile', compact('userDetail'));
     }
     public function create_user(Request $request){
-
-//        $validatedData = $request->validate([
-//            'name' => 'required|max:255',
-//            'father_name' => 'required|max:255',
-//            'cnic' => 'required',
-//            'dob' => 'required',
-//            'address' => 'required',
-//            'contact' => 'required',
-//            'sponsor_code' => 'required',
-//            'blood_group' => 'required',
-//            'joining_code' => 'required',
-//            'joining_date' => 'required',
-//            'nominee' => 'required',
-//            'nomineecnic' => 'required',
-//            'nominee_contact' => 'required',
-//            'slip_number' => 'required',
-//            'points' => 'required',
-//            'email' => 'required',
-//            'amount' => 'required',
-//            'password' => 'required'
-//        ]);
-
-
         $user = new User();
 
         $user->name = $request->name;

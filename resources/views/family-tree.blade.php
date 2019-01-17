@@ -19,151 +19,35 @@
                 <div class="box-body">
                     {{--<div id="tree" style="padding-bottom: 20px;"></div>--}}
                     <div class="tree" style="overflow: auto auto;display: flex;">
+
                         <ul>
                             <li>
-                                <a href="#">Parent</a>
+                                <a href="#"> {{$loggedinUsername}}</a>
                                 <ul>
-                                    <li>
-                                        <a href="#">Child 1</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Grand Child 1</a>
-                                                <ul>
+
+                                    @foreach($childData as $child)
+                                        <li>
+                                            <a href="#">{{$child->name}}</a>
+                                            {{--<ul>
+                                                @foreach($grandChild as $grand)
                                                     <li>
-                                                        <a href="#">Grand Child 1-1</a>
+                                                        <a href="#">{{$grandChild[$child->name]['name']}}</a>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">Grand Child 1-1</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Grand Child 1-2</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Grand Child 1-3</a>
+                                                            </li>
+                                                        </ul>
                                                     </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 2</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 3</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Child 2</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Grand Child 1</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 2</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 3</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Child 3</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Grand Child 1</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 1-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 2</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 2-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Grand Child 3</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Grand Child 3-3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                                @endforeach
+                                            </ul>--}}
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>

@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Auth::routes();
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
@@ -27,5 +27,5 @@ Route::get('/profile','HomeController@profile');
 Route::get('/user/{id}','HomeController@user_profile');
 
 
-Route::get('/hierarchy', 'HomeController@usersHierarchy')->name('home');
 Route::post('/invite-user', 'InviteUserController@usersHierarchy')->name('home');
+Route::get('/hierarchy', 'FamilyTreeController@index');
