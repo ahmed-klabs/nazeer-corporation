@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::select('name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->get();
+        $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->get();
 
 //        echo '<pre>';
 //        print_r($users);

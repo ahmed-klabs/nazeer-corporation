@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
             'address' => "House # 123",
             'contact' => "0346-1234567",
             'blood_group' => "A+",
-            'joining_code' => mt_rand(100000,999999),
+            'joining_code' => 'admin',
             'joining_date' => Carbon\Carbon::now(),
             'nominee' => "Admin",
             'nominee_cnic' => "00000-0000000-0",
