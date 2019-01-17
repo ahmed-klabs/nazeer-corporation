@@ -97,11 +97,11 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('amount') ? 'has-error': ''; ?> ">
                                     <label for="amount">Amount</label>
-                                    <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" required>
+                                    <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" min="1000" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('points') ? 'has-error': ''; ?> ">
                                     <label for="points">Points</label>
-                                    <input type="number" class="form-control" name="points" id="points" placeholder="Points" required>
+                                    <input type="number" class="form-control" name="points" id="points" placeholder="Points" readonly required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('email') ? 'has-error': ''; ?>">
                                     <label for="email">Email</label>
@@ -127,33 +127,32 @@
 <script>
     $(document).ready(function () {
 
-//        $('input#contact').mask('0000-0000000');
-
+        // contact number mask
         document.getElementById('contact').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '' + x[3] : '');
         });
-
+        // nominee contact number mask
         document.getElementById('nominee_contact').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})(\d{0,3})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '' + x[3] : '');
         });
-
+        // cnic mask
         document.getElementById('cnic').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,7})(\d{0,1})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
         });
-
+        // nominee cnic mask
         document.getElementById('nomineecnic').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,7})(\d{0,1})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
         });
-
+        // dob mask
         document.getElementById('dob').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '/' + x[2] + (x[3] ? '/' + x[3] : '');
         });
-
+        // joining date mask
         document.getElementById('joining_date').addEventListener('input', function (e) {
             var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
             e.target.value = !x[2] ? x[1] : '' + x[1] + '/' + x[2] + (x[3] ? '/' + x[3] : '');
@@ -162,6 +161,12 @@
         var pwd = Math.random().toString(36).slice(-8);
         console.log(pwd);
         $('#joining_code').val(pwd);
+
+        $("#amount").keyup(function(){
+            var val = $(this).val();
+            val = val/1000;
+            $('#points').val(val);
+        });
     });
 </script>
 @endsection
