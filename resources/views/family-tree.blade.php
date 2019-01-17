@@ -23,32 +23,35 @@
                         <ul>
                             <li>
                                 <a href="#"> {{$loggedinUsername}}</a>
-                                <ul>
-
-                                    @foreach($childData as $child)
-                                        <li>
-                                            <a href="#">{{$child->name}}</a>
-                                            {{--<ul>
-                                                @foreach($grandChild as $grand)
-                                                    <li>
-                                                        <a href="#">{{$grandChild[$child->name]['name']}}</a>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#">Grand Child 1-1</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Grand Child 1-2</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Grand Child 1-3</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                @endforeach
-                                            </ul>--}}
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                @if(isset($childData) && count($childData) > 0)
+                                    <ul>
+                                        @foreach($childData as $child)
+                                            <li>
+                                                <a href="#">{{$child->name}}</a>
+                                                {{--<ul>
+                                                    @foreach($grandChild as $grand)
+                                                        <li>
+                                                            <a href="#">{{$grandChild[$child->name]['name']}}</a>
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="#">Grand Child 1-1</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">Grand Child 1-2</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">Grand Child 1-3</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>--}}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p>No Child Found</p>
+                                @endif
                             </li>
                         </ul>
                     </div>
