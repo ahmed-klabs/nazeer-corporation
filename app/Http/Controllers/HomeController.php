@@ -27,7 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->get();
+        $users = '';
+        if(Auth::User()->role == 'admin'){
+            $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->get();
+        }
+        else{
+            $sponser_code = Auth::User()->joining_code;
+            $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
+
+        }
+
 
 //        echo '<pre>';
 //        print_r($users);
