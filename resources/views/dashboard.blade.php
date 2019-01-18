@@ -19,6 +19,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
+                            <th>Sponsor Name</th>
                             <th>Sponsor Code</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -30,8 +31,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($allUsers as $user)
+
                             <tr>
+                                <td>{{ $user['sponsor_name'] }}</td>
                                 <td>{{ $user['sponsor_code'] }}</td>
                                 <td>{{ $user['name'] }}</td>
                                 <td>{{ $user['email'] }}</td>
