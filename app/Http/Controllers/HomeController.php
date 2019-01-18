@@ -27,20 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = '';
-        if(Auth::User()->role == 'admin'){
-            $sponser_name = 'Admin';
-            $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points','role')->where('role','user')->get();
 
-        }
-        else{
-
-            $data = Auth::User();
-            $sponser_code = $data->joining_code;
-            $sponser_name = $data->name;
-            $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
-
-        }
+        $data = Auth::User();
+        $sponser_code = $data->joining_code;
+        $sponser_name = $data->name;
+        $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
 
         if(!empty($users)){
             foreach($users as $user){
