@@ -17,35 +17,45 @@
                     <h3 class="box-title"></h3>
                 </div>
                 <div class="box-body">
-                    {{--<div id="tree" style="padding-bottom: 20px;"></div>--}}
-                    <div class="tree" style="overflow: auto auto;display: flex;">
 
+                    {{--@foreach($grandChilds as $grand)
+                        @if($grand[0]->sponsor_code == '1dbu2voe1')
+                            {{$grand}}
+                        @endif
+                    @endforeach--}}
+
+                    <div class="tree" style="overflow: auto auto;display: flex;">
                         <ul>
                             <li>
                                 <a href="#"> {{$loggedinUsername}}</a>
                                 @if(isset($childData) && count($childData) > 0)
                                     <ul>
                                         @foreach($childData as $child)
+
                                             <li>
                                                 <a href="#">{{$child->name}}</a>
-                                                {{--<ul>
-                                                    @foreach($grandChild as $grand)
-                                                        <li>
-                                                            <a href="#">{{$grandChild[$child->name]['name']}}</a>
-                                                            <ul>
+                                                <ul>
+                                                    @foreach($grandChilds as $grand)
+                                                        @for ($i = 0; $i < count($grand); $i++)
+                                                            @if($grand[$i]->sponsor_code == $child->joining_code)
                                                                 <li>
-                                                                    <a href="#">Grand Child 1-1</a>
+                                                                    <a href="#">{{$grand[$i]->name}}</a>
+                                                                    {{--<ul>
+                                                                            <li>
+                                                                                <a href="#">Grand Child 1-1</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">Grand Child 1-2</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">Grand Child 1-3</a>
+                                                                            </li>
+                                                                        </ul>--}}
                                                                 </li>
-                                                                <li>
-                                                                    <a href="#">Grand Child 1-2</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">Grand Child 1-3</a>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
+                                                            @endif
+                                                        @endfor
                                                     @endforeach
-                                                </ul>--}}
+                                                </ul>
                                             </li>
                                         @endforeach
                                     </ul>

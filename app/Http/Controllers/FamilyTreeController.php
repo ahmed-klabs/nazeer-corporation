@@ -13,34 +13,23 @@ class FamilyTreeController extends Controller
         $loggedinUserData = User::where('id', $loggedinUserId)->first();
         $loggedinUserJoiningCode = $loggedinUserData->joining_code;
         $loggedinUsername = $loggedinUserData->name;
-//        return $loggedinUsername;
 
         $childs = User::where('sponsor_code', $loggedinUserJoiningCode)->get();
-
-
-//        $childs = User::where('sponsor_code', $childs->)->get();
-
+        $grandChilds = [];
         if(!empty($childs)) {
             foreach ($childs as $child) {
                 $childData[] = $child;
-                $grandChild[$child['name']] = User::where('sponsor_code', $child->joining_code)->get();
-
+                $grandChild[$child['name']] = User::select('id','name', 'sponsor_code')->where('sponsor_code',$child->joining_code)->get();
+                array_push($grandChilds, $grandChild[$child['name']]);
             }
         }
         else {
             $childData = [];
-            $grandChild = [];
+            $grandChilds = [];
         }
 
-//        return $grandChild;
 
-//        $childData['loggedinUsername'] = $loggedinUsername;
-//        array_push($childData, $loggedinUsername);
-
-        return view('family-tree',compact('childData', 'loggedinUsername'));
-
-        return view('family-tree')->with(compact('childData'))->with(compact('loggedinUsername'))->with(compact('grandChild'));
-
-//        return view('family-tree',compact('childData'));
+        return $grandChilds ;
+        return view('family-tree',compact('childData', 'loggedinUsername'))->with(compact('grandChilds'));
     }
 }
