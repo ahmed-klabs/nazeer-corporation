@@ -40,17 +40,19 @@
                                                             @if($grand[$i]->sponsor_code == $child->joining_code)
                                                                 <li>
                                                                     <a href="#">{{$grand[$i]->name}}</a>
-                                                                    {{--<ul>
-                                                                            <li>
-                                                                                <a href="#">Grand Child 1-1</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#">Grand Child 1-2</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <a href="#">Grand Child 1-3</a>
-                                                                            </li>
-                                                                        </ul>--}}
+                                                                    <ul>
+                                                                        @foreach($grandChildArray3 as $grandThree)
+
+                                                                            @for ($j = 0; $j < count($grandThree); $j++)
+                                                                                @if($grandThree[$j]->sponsor_code == $grand[$i]->joining_code)
+
+                                                                                    <li>
+                                                                                        <a href="#">{{$grandThree[$j]->name}}</a>
+                                                                                    </li>
+                                                                                @endif
+                                                                            @endfor
+                                                                        @endforeach
+                                                                    </ul>
                                                                 </li>
                                                             @endif
                                                         @endfor
