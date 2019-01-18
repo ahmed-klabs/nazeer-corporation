@@ -31,22 +31,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($allUsers as $user)
+                        @if(isset($allUsers) && count($allUsers)>0)
+                            @foreach($allUsers as $user)
 
-                            <tr>
-                                <td>{{ $user['sponsor_name'] }}</td>
-                                <td>{{ $user['sponsor_code'] }}</td>
-                                <td>{{ $user['name'] }}</td>
-                                <td>{{ $user['email'] }}</td>
-                                <td>{{ $user['contact'] }}</td>
-                                <td>{{ $user['joining_code'] }}</td>
-                                <td>{{ $user['joining_date'] }}</td>
-                                <td>{{ $user['points'] }}</td>
-                                <td>
-                                    <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">View</a>
-                                </td>
-                            </tr>
-                        @endforeach
+                                <tr>
+                                    <td>{{ $user['sponsor_name'] }}</td>
+                                    <td>{{ $user['sponsor_code'] }}</td>
+                                    <td>{{ $user['name'] }}</td>
+                                    <td>{{ $user['email'] }}</td>
+                                    <td>{{ $user['contact'] }}</td>
+                                    <td>{{ $user['joining_code'] }}</td>
+                                    <td>{{ $user['joining_date'] }}</td>
+                                    <td>{{ $user['points'] }}</td>
+                                    <td>
+                                        <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                        @endif
                         </tbody>
                     </table>
                 </div>
