@@ -22,43 +22,51 @@
                             <table class="table table-striped">
                                 <tr>
                                     <td>Name</td>
-                                    <td>{{$userDetail['name']}}</td>
+                                    <td>{{$userData['name']}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Points</td>
-                                    <td>{{$userDetail['points']}}</td>
+                                    <td>Total Points</td>
+                                    <td>{{ $totalPoints }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Percentage</td>
-                                    <td>{{ "xyz %" }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Amount</td>
-                                    <td>{{$userDetail['amount']}}</td>
+                                    <td>Total Amount</td>
+                                    <td>{{"PKR " . $totalAmount}}</td>
                                 </tr>
                                 <tr>
                                     <td>No Of Customer Under You</td>
-                                    <td>{{ $childCount }}</td>
+                                    <td>{{ $totalCustomers }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Your Percentage From Customer</td>
-                                    <td>{{ "xyz %" }}</td>
+                                    <td>Direct Bonus</td>
+                                    <td>{{ 5 .  "%" }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Link Bonus</td>
+                                    <td>{{ $customerPercentage .  "%" }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Matching Bonus</td>
+                                    <td>{{ $matchingBonus .  "%" }}</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="sub-tbl">
                             <table class="table table-striped">
                                 <tr>
-                                    <td><b>Total Percentage</b></td>
-                                    <td>{{ "xyz%" }}</td>
+                                    <td><b>Percentage</b></td>
+                                    <td>{{ $totalPercentage . "%" }}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Total Amount</b></td>
-                                    <td>{{ "xyz PKR" }}</td>
+                                    <td><b>Amount to be paid first month</b></td>
+                                    <td>{{ "PKR " . ($totalAmount * ($totalPercentage + $matchingBonus) ) / 100 }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Amount to be paid after first month</b></td>
+                                    <td>{{ "PKR " . ($totalAmount * $totalPercentage ) / 100 }}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Date Of Checque</b></td>
-                                    <td>{{ $userDetail->joining_date }}</td>
+                                    <td>{{ $dateOfCheck  }}</td>
                                 </tr>
                             </table>
                         </div>
