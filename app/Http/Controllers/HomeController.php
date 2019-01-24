@@ -680,7 +680,7 @@ class HomeController extends Controller
         $userData = User::select('created_at')->where('sponsor_code', $request->sponsor_code)->get();
         $userCount = 0;
         foreach ($userData as $dt){
-            if(date('Y') == date('Y',strtotime($dt->created_at))){
+            if(date('m-Y') == date('m-Y',strtotime($dt->created_at))){
                 $userCount++;
             }
 
