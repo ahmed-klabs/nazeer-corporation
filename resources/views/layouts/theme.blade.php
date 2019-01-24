@@ -37,8 +37,8 @@
         <!-- Logo -->
         <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            {{--<span class="logo-mini">NEISP</span>--}}
-            <img src="{{ asset('images/neisp-logo.png') }}" style="width:50px;height: auto;">
+            <span class="logo-mini">NEISP</span>
+            {{--<img src="{{ asset('images/neisp-logo.png') }}" style="width:50px;height: auto;">--}}
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>NEISP</b></span>
         </a>

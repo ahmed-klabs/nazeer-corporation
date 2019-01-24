@@ -39,10 +39,13 @@
                             </table>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('images/neisp.png') }}" style="width:450px;height: auto;">
+                    </div>
                 </div>
             </div>
 
-            <img src="{{ asset('images/neisp.png') }}" style="width:500px;height: auto;">
+
         </section>
     </div>
     <style>
