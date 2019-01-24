@@ -11,15 +11,17 @@
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        {{--<section class="content-header">--}}
-            {{--<h1>--}}
-                {{--Invite User--}}
-            {{--</h1>--}}
-        {{--</section>--}}
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
             <div class="box">
+                @if ( $errors->count() > 0 )
+                    <p style="color: red">The following errors have occurred:</p>
+                    <br/>
+                        @foreach( $errors->all() as $message )
+                            <p style="color: red">{{ $message }}</p>
+                        @endforeach
+                @endif
                 <div class="box-header with-border">
                     <h3 class="box-title">Invite New Member</h3>
                 </div>
@@ -73,7 +75,8 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('joining_code') ? 'has-error': ''; ?>">
                                     <label for="joining_code">Joining Code</label>
-                                    <input type="text" class="form-control" name="joining_code" id="joining_code" value="" placeholder="" required>
+                                    {{--<input type="text" class="form-control" name="joining_code" id="joining_code" value="" placeholder="" required>--}}
+                                    <input type="text" class="form-control" name="joining_code" id="joining_code" value="" placeholder="will be auto generate on save" disabled>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('joining_date') ? 'has-error': ''; ?>">
                                     <label for="joining_date">Joining Date</label>
@@ -105,18 +108,20 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('email') ? 'has-error': ''; ?>">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    {{--<input type="text" class="form-control" name="email" id="email" placeholder="Email" required>--}}
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Will be autogenerate on save" disabled>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('pwd') ? 'has-error': ''; ?>">
                                     <label for="new-user-pwd">Password</label>
-                                    <input type="text" class="form-control" id="new-user-pwd" name="pwd" placeholder="Password" required>
-                                    <button type="button" class="btn btn-warning" id="generate-pwd" style="margin-top: 5px;">Generate Password</button>
+                                    {{--<input type="text" class="form-control" id="new-user-pwd" name="pwd" placeholder="Password" required>--}}
+                                    <input type="text" class="form-control" id="new-user-pwd" name="pwd" placeholder="Will be same as NIC" disabled>
+                                    {{--<button type="button" class="btn btn-warning" id="generate-pwd" style="margin-top: 5px;">Generate Password</button>--}}
                                 </div>
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>
@@ -178,9 +183,9 @@
             e.target.value = !x[2] ? x[1] : '' + x[1] + '/' + x[2] + (x[3] ? '/' + x[3] : '');
         });
 
-        var pwd = Math.random().toString(36).slice(-8);
-        console.log(pwd);
-        $('#joining_code').val(pwd);
+//        var pwd = Math.random().toString(36).slice(-8);
+//        console.log(pwd);
+//        $('#joining_code').val(pwd);
 
         $("#amount").keyup(function(){
             var val = $(this).val();

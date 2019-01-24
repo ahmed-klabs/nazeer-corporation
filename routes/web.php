@@ -18,15 +18,11 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
+Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/add-user','HomeController@add_user');
 Route::post('/add-user','HomeController@create_user');
 Route::get('/profile','HomeController@profile');
 Route::get('/user/{id}','HomeController@user_profile');
-
-
 Route::post('/invite-user', 'InviteUserController@usersHierarchy')->name('home');
 Route::get('/hierarchy', 'FamilyTreeController@index');
 

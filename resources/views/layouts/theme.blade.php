@@ -73,12 +73,13 @@
         <section class="sidebar">
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                <li><a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                <li><a href="/home"><i class="fa fa-home"></i> <span>Home</span></a></li>
+                <li><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
                 @if(Auth()->user()->role == "admin")
                 <li><a href="/add-user"><i class="fa fa-user-plus"></i> <span>Invite Member</span></a></li>
                 @endif
-                <li><a href="/hierarchy"><i class="fa fa-sitemap"></i> <span>Members</span></a></li>
-                <li><a href="/profile"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+                <li><a href="/hierarchy"><i class="fa fa-sitemap"></i> <span>Roots</span></a></li>
+                <li><a href="/profile"><i class="fa fa-money"></i> <span>Bonus</span></a></li>
             </ul>
         </section>
     </aside>

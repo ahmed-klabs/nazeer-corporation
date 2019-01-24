@@ -25,12 +25,20 @@
                                     <td>{{$userData['name']}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Points</td>
-                                    <td>{{ $totalPoints }}</td>
+                                    <td>Rank</td>
+                                    <td>{{$rank}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Total Amount</td>
-                                    <td>{{"PKR " . $totalAmount}}</td>
+                                    <td>Direct Points</td>
+                                    <td>{{ $userData['points'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>In-Direct Points</td>
+                                    <td>{{ $childsPoints }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Points</td>
+                                    <td>{{ $totalPoints }}</td>
                                 </tr>
                                 <tr>
                                     <td>No Of Customer Under You</td>
@@ -38,7 +46,7 @@
                                 </tr>
                                 <tr>
                                     <td>Direct Bonus</td>
-                                    <td>{{ 5 .  "%" }}</td>
+                                    <td>{{ $directBonus .  "%" }}</td>
                                 </tr>
                                 <tr>
                                     <td>Link Bonus</td>
@@ -57,11 +65,7 @@
                                     <td>{{ $totalPercentage . "%" }}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Amount to be paid first month</b></td>
-                                    <td>{{ "PKR " . ($totalAmount * ($totalPercentage + $matchingBonus) ) / 100 }}</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Amount to be paid after first month</b></td>
+                                    <td><b>Amount to be paid</b></td>
                                     <td>{{ "PKR " . ($totalAmount * $totalPercentage ) / 100 }}</td>
                                 </tr>
                                 <tr>
