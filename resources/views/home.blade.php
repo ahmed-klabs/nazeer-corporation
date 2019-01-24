@@ -41,6 +41,8 @@
                     </div>
                 </div>
             </div>
+
+            <img src="{{ asset('images/neisp.png') }}" style="width:500px;height: auto;">
         </section>
     </div>
     <style>
