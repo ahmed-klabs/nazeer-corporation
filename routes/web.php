@@ -28,3 +28,5 @@ Route::get('/hierarchy', 'FamilyTreeController@index');
 
 // Sponsor code validation Route
 Route::post('/checkChild', 'HomeController@checkChild');
+
+Route::post('/password-reset', 'ForgotPassword@changePassword');
