@@ -850,7 +850,7 @@ class HomeController extends Controller
             $directBonus = 0;
         }
 
-        $totalPercentage = $customerPercentage + $directBonus;
+        $totalPercentage = $customerPercentage + $directBonus + $matchingBonus;
 
         $amountToBePaid = 0;
         if($directBonus > 0){
@@ -863,6 +863,10 @@ class HomeController extends Controller
 
         if($childsAmount > 0){
             $amountToBePaid += ($childsAmount / 100) * 5;
+        }
+
+        if($matchingBonus > 0){
+            $amountToBePaid += ($childsAmount / 100) * 1;
         }
 
         if($userFilerStatus == 'filer'){
@@ -1061,7 +1065,8 @@ class HomeController extends Controller
             $directBonus = 0;
         }
 
-        $totalPercentage = $customerPercentage + $directBonus;
+        $totalPercentage = $customerPercentage + $directBonus + $matchingBonus;
+
 
         $amountToBePaid = 0;
         if($directBonus > 0){
@@ -1074,6 +1079,10 @@ class HomeController extends Controller
 
         if($childsAmount > 0){
             $amountToBePaid += ($childsAmount / 100) * 5;
+        }
+
+        if($matchingBonus > 0){
+            $amountToBePaid += ($childsAmount / 100) * 1;
         }
 
         if($userFilerStatus == 'filer'){
