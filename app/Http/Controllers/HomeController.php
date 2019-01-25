@@ -862,6 +862,7 @@ class HomeController extends Controller
             $user->dob = $request->dob;
             $user->address = $request->address;
             $user->contact = $request->contact;
+            $user->filer = $request->filer;
             $user->sponsor_code = $request->sponsor_code;
             $user->blood_group = $request->blood_group;
             $user->joining_code = "0000" . strval($userLastId->id + 1);

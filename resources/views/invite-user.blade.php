@@ -42,6 +42,14 @@
                                     <label for="cnic">CNIC Number</label>
                                     <input type="text" name="cnic" class="form-control" id="cnic" placeholder="xxxxx-xxxxxxx-x" required>
                                 </div>
+                                <div class="form-group <?php if(isset($error)) $error->has('filer') ? 'has-error': ''; ?>">
+                                    <label for="filer">Filer</label>
+                                    <select class="form-control" name="filer" id="filer" required>
+                                        <option value="">Please Select</option>
+                                        <option value="filer">Filer</option>
+                                        <option value="non-filer">Non Filer</option>
+                                    </select>
+                                </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('dob') ? 'has-error': ''; ?>">
                                     <label for="dob">Date Of Birth</label>
                                     <input type="text" class="form-control" name="dob" id="dob" placeholder="dd/mm/yyyy" required>
