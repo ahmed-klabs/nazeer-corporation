@@ -39,8 +39,13 @@
                             </table>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('images/neisp.png') }}" style="width:450px;height: auto;">
+                    </div>
                 </div>
             </div>
+
+
         </section>
     </div>
     <style>
