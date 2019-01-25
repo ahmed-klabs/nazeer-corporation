@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'dob' => "20/05/1990",
             'address' => "House # 123",
             'contact' => "0346-1234567",
-            'filer' => "filer",
+            'filer' => "non-filer",
             'blood_group' => "A+",
             'joining_code' => '00001',
             'joining_date' => Carbon\Carbon::now(),
