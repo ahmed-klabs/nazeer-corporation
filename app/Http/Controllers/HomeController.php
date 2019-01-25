@@ -866,7 +866,7 @@ class HomeController extends Controller
         }
 
         if($matchingBonus > 0){
-            $amountToBePaid += ($childsAmount / 100) * 1;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * 1;
         }
 
         if($userFilerStatus == 'filer'){
@@ -1082,8 +1082,10 @@ class HomeController extends Controller
         }
 
         if($matchingBonus > 0){
-            $amountToBePaid += ($childsAmount / 100) * 1;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * 1;
         }
+
+
 
         if($userFilerStatus == 'filer'){
             $filerDeduction = ($amountToBePaid / 100) * 12;
