@@ -177,7 +177,7 @@ class HomeController extends Controller
         $data = Auth::User();
         $sponser_code = $data->joining_code;
         $sponser_name = $data->name;
-        $users = User::select('id','name','cnic','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
+        $users = User::select('id','name','cnic','email','contact','joining_code','joining_date','sponsor_code','points','filer')->where('role','user')->where('sponsor_code',$sponser_code)->get();
 
         if(!empty($users)){
             foreach($users as $user){
@@ -191,7 +191,8 @@ class HomeController extends Controller
                     'joining_date' => $user->joining_date,
                     'sponsor_code' => $user->sponsor_code,
                     'sponsor_name' => $sponser_name,
-                    'points' => $user->points
+                    'points' => $user->points,
+                    'filer' => $user->filer
                 );
 
                 $secondChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$user->joining_code)->get();
@@ -206,7 +207,8 @@ class HomeController extends Controller
                         'joining_date' => $secondChild->joining_date,
                         'sponsor_code' => $secondChild->sponsor_code,
                         'sponsor_name' => $user->name,
-                        'points' => $secondChild->points
+                        'points' => $secondChild->points,
+                        'filer' => $user->filer
                     );
 
                     $thirdChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$secondChild->joining_code)->get();
@@ -221,7 +223,8 @@ class HomeController extends Controller
                             'joining_date' => $thirdChild->joining_date,
                             'sponsor_code' => $thirdChild->sponsor_code,
                             'sponsor_name' => $secondChild->name,
-                            'points' => $thirdChild->points
+                            'points' => $thirdChild->points,
+                            'filer' => $user->filer
                         );
 
                         $forthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$thirdChild->joining_code)->get();
@@ -236,7 +239,8 @@ class HomeController extends Controller
                                 'joining_date' => $forthChild->joining_date,
                                 'sponsor_code' => $forthChild->sponsor_code,
                                 'sponsor_name' => $thirdChild->name,
-                                'points' => $forthChild->points
+                                'points' => $forthChild->points,
+                                'filer' => $user->filer
                             );
 
                             $fivethChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$forthChild->joining_code)->get();
@@ -251,7 +255,8 @@ class HomeController extends Controller
                                     'joining_date' => $fivethChild->joining_date,
                                     'sponsor_code' => $fivethChild->sponsor_code,
                                     'sponsor_name' => $forthChild->name,
-                                    'points' => $fivethChild->points
+                                    'points' => $fivethChild->points,
+                                    'filer' => $user->filer
                                 );
 
                                 $sixthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$fivethChild->joining_code)->get();
@@ -266,7 +271,8 @@ class HomeController extends Controller
                                         'joining_date' => $sixthChild->joining_date,
                                         'sponsor_code' => $sixthChild->sponsor_code,
                                         'sponsor_name' => $fivethChild->name,
-                                        'points' => $sixthChild->points
+                                        'points' => $sixthChild->points,
+                                        'filer' => $user->filer
                                     );
 
                                     $seventhChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sixthChild->joining_code)->get();
@@ -281,7 +287,8 @@ class HomeController extends Controller
                                             'joining_date' => $seventhChild->joining_date,
                                             'sponsor_code' => $seventhChild->sponsor_code,
                                             'sponsor_name' => $sixthChild->name,
-                                            'points' => $seventhChild->points
+                                            'points' => $seventhChild->points,
+                                            'filer' => $user->filer
                                         );
 
                                         $eightthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$seventhChild->joining_code)->get();
@@ -296,7 +303,8 @@ class HomeController extends Controller
                                                 'joining_date' => $eightthChild->joining_date,
                                                 'sponsor_code' => $eightthChild->sponsor_code,
                                                 'sponsor_name' => $seventhChild->name,
-                                                'points' => $eightthChild->points
+                                                'points' => $eightthChild->points,
+                                                'filer' => $user->filer
                                             );
 
 
@@ -337,7 +345,7 @@ class HomeController extends Controller
         $data = User::select('joining_code','name')->where('id',$id)->first();
         $sponser_code = $data->joining_code;
         $sponser_name = $data->name;
-        $users = User::select('id','name','cnic','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
+        $users = User::select('id','name','cnic','email','contact','joining_code','joining_date','sponsor_code','points','filer')->where('role','user')->where('sponsor_code',$sponser_code)->get();
 
         if(!empty($users)){
             foreach($users as $user){
@@ -351,7 +359,8 @@ class HomeController extends Controller
                     'joining_date' => $user->joining_date,
                     'sponsor_code' => $user->sponsor_code,
                     'sponsor_name' => $sponser_name,
-                    'points' => $user->points
+                    'points' => $user->points,
+                    'filer' => $user->filer
                 );
 
                 $secondChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$user->joining_code)->get();
@@ -366,7 +375,8 @@ class HomeController extends Controller
                         'joining_date' => $secondChild->joining_date,
                         'sponsor_code' => $secondChild->sponsor_code,
                         'sponsor_name' => $user->name,
-                        'points' => $secondChild->points
+                        'points' => $secondChild->points,
+                        'filer' => $user->filer
                     );
 
                     $thirdChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$secondChild->joining_code)->get();
@@ -381,7 +391,8 @@ class HomeController extends Controller
                             'joining_date' => $thirdChild->joining_date,
                             'sponsor_code' => $thirdChild->sponsor_code,
                             'sponsor_name' => $secondChild->name,
-                            'points' => $thirdChild->points
+                            'points' => $thirdChild->points,
+                            'filer' => $user->filer
                         );
 
                         $forthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$thirdChild->joining_code)->get();
@@ -396,7 +407,8 @@ class HomeController extends Controller
                                 'joining_date' => $forthChild->joining_date,
                                 'sponsor_code' => $forthChild->sponsor_code,
                                 'sponsor_name' => $thirdChild->name,
-                                'points' => $forthChild->points
+                                'points' => $forthChild->points,
+                                'filer' => $user->filer
                             );
 
                             $fivethChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$forthChild->joining_code)->get();
@@ -411,7 +423,8 @@ class HomeController extends Controller
                                     'joining_date' => $fivethChild->joining_date,
                                     'sponsor_code' => $fivethChild->sponsor_code,
                                     'sponsor_name' => $forthChild->name,
-                                    'points' => $fivethChild->points
+                                    'points' => $fivethChild->points,
+                                    'filer' => $user->filer
                                 );
 
                                 $sixthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$fivethChild->joining_code)->get();
@@ -426,7 +439,8 @@ class HomeController extends Controller
                                         'joining_date' => $sixthChild->joining_date,
                                         'sponsor_code' => $sixthChild->sponsor_code,
                                         'sponsor_name' => $fivethChild->name,
-                                        'points' => $sixthChild->points
+                                        'points' => $sixthChild->points,
+                                        'filer' => $user->filer
                                     );
 
                                     $seventhChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sixthChild->joining_code)->get();
@@ -441,7 +455,8 @@ class HomeController extends Controller
                                             'joining_date' => $seventhChild->joining_date,
                                             'sponsor_code' => $seventhChild->sponsor_code,
                                             'sponsor_name' => $sixthChild->name,
-                                            'points' => $seventhChild->points
+                                            'points' => $seventhChild->points,
+                                            'filer' => $user->filer
                                         );
 
                                         $eightthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$seventhChild->joining_code)->get();
@@ -456,7 +471,8 @@ class HomeController extends Controller
                                                 'joining_date' => $eightthChild->joining_date,
                                                 'sponsor_code' => $eightthChild->sponsor_code,
                                                 'sponsor_name' => $seventhChild->name,
-                                                'points' => $eightthChild->points
+                                                'points' => $eightthChild->points,
+                                                'filer' => $user->filer
                                             );
 
 
@@ -661,7 +677,8 @@ class HomeController extends Controller
         $userSponserCode = $userData->joining_code;
         $userAmount = $userData->amount;
         $userPoints = $userData->points;
-        $userFilerStatus = 'non-filer';
+        $userFilerStatus = $userData->filer;
+//        $userFilerStatus = 'non-filer';
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
 
@@ -871,7 +888,8 @@ class HomeController extends Controller
         $userSponserCode = $userData->joining_code;
         $userAmount = $userData->amount;
         $userPoints = $userData->points;
-        $userFilerStatus = 'non-filer';
+        $userFilerStatus = $userData->filer;
+//        $userFilerStatus = 'non-filer';
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
 

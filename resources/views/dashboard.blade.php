@@ -26,6 +26,7 @@
                             <th>Joining Code</th>
                             <th>Joining Date</th>
                             <th>Points</th>
+                            <th>Filer</th>
                             <th>Sponsor Code</th>
                             <th>Option</th>
                         </tr>
@@ -42,6 +43,7 @@
                                     <td>{{ $user['joining_code'] }}</td>
                                     <td>{{ $user['joining_date'] }}</td>
                                     <td>{{ $user['points'] }}</td>
+                                    <td>{{ $user['filer'] }}</td>
                                     <td>{{ $user['sponsor_code'] }}</td>
                                     <td style="display: inline-flex">
                                         <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">Bouns</a>
