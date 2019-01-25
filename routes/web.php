@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/user_dashboard/{id}', 'HomeController@user_dashboard');
 Route::get('/add-user','HomeController@add_user');
 Route::post('/add-user','HomeController@create_user');
 Route::get('/profile','HomeController@profile');

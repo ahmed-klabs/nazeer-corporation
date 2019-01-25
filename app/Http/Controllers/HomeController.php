@@ -331,6 +331,166 @@ class HomeController extends Controller
         return view('dashboard', compact('allUsers'));
     }
 
+    public function user_dashboard($id)
+    {
+
+        $data = User::select('joining_code','name')->where('id',$id)->first();
+        $sponser_code = $data->joining_code;
+        $sponser_name = $data->name;
+        $users = User::select('id','name','cnic','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sponser_code)->get();
+
+        if(!empty($users)){
+            foreach($users as $user){
+                $allUsers[] = array(
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'contact' => $user->contact,
+                    'cnic' => $user->cnic,
+                    'joining_code' => $user->joining_code,
+                    'joining_date' => $user->joining_date,
+                    'sponsor_code' => $user->sponsor_code,
+                    'sponsor_name' => $sponser_name,
+                    'points' => $user->points
+                );
+
+                $secondChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$user->joining_code)->get();
+                foreach($secondChilds as $secondChild){
+                    $allUsers[] = array(
+                        'id' => $secondChild->id,
+                        'name' => $secondChild->name,
+                        'email' => $secondChild->email,
+                        'contact' => $secondChild->contact,
+                        'cnic' => $user->cnic,
+                        'joining_code' => $secondChild->joining_code,
+                        'joining_date' => $secondChild->joining_date,
+                        'sponsor_code' => $secondChild->sponsor_code,
+                        'sponsor_name' => $user->name,
+                        'points' => $secondChild->points
+                    );
+
+                    $thirdChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$secondChild->joining_code)->get();
+                    foreach($thirdChilds as $thirdChild){
+                        $allUsers[] = array(
+                            'id' => $thirdChild->id,
+                            'name' => $thirdChild->name,
+                            'email' => $thirdChild->email,
+                            'contact' => $thirdChild->contact,
+                            'cnic' => $user->cnic,
+                            'joining_code' => $thirdChild->joining_code,
+                            'joining_date' => $thirdChild->joining_date,
+                            'sponsor_code' => $thirdChild->sponsor_code,
+                            'sponsor_name' => $secondChild->name,
+                            'points' => $thirdChild->points
+                        );
+
+                        $forthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$thirdChild->joining_code)->get();
+                        foreach($forthChilds as $forthChild){
+                            $allUsers[] = array(
+                                'id' => $forthChild->id,
+                                'name' => $forthChild->name,
+                                'email' => $forthChild->email,
+                                'contact' => $forthChild->contact,
+                                'cnic' => $user->cnic,
+                                'joining_code' => $forthChild->joining_code,
+                                'joining_date' => $forthChild->joining_date,
+                                'sponsor_code' => $forthChild->sponsor_code,
+                                'sponsor_name' => $thirdChild->name,
+                                'points' => $forthChild->points
+                            );
+
+                            $fivethChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$forthChild->joining_code)->get();
+                            foreach($fivethChilds as $fivethChild){
+                                $allUsers[] = array(
+                                    'id' => $fivethChild->id,
+                                    'name' => $fivethChild->name,
+                                    'email' => $fivethChild->email,
+                                    'contact' => $fivethChild->contact,
+                                    'cnic' => $user->cnic,
+                                    'joining_code' => $fivethChild->joining_code,
+                                    'joining_date' => $fivethChild->joining_date,
+                                    'sponsor_code' => $fivethChild->sponsor_code,
+                                    'sponsor_name' => $forthChild->name,
+                                    'points' => $fivethChild->points
+                                );
+
+                                $sixthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$fivethChild->joining_code)->get();
+                                foreach($sixthChilds as $sixthChild){
+                                    $allUsers[] = array(
+                                        'id' => $sixthChild->id,
+                                        'name' => $sixthChild->name,
+                                        'email' => $sixthChild->email,
+                                        'contact' => $sixthChild->contact,
+                                        'cnic' => $user->cnic,
+                                        'joining_code' => $sixthChild->joining_code,
+                                        'joining_date' => $sixthChild->joining_date,
+                                        'sponsor_code' => $sixthChild->sponsor_code,
+                                        'sponsor_name' => $fivethChild->name,
+                                        'points' => $sixthChild->points
+                                    );
+
+                                    $seventhChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$sixthChild->joining_code)->get();
+                                    foreach($seventhChilds as $seventhChild){
+                                        $allUsers[] = array(
+                                            'id' => $seventhChild->id,
+                                            'name' => $seventhChild->name,
+                                            'email' => $seventhChild->email,
+                                            'contact' => $seventhChild->contact,
+                                            'cnic' => $user->cnic,
+                                            'joining_code' => $seventhChild->joining_code,
+                                            'joining_date' => $seventhChild->joining_date,
+                                            'sponsor_code' => $seventhChild->sponsor_code,
+                                            'sponsor_name' => $sixthChild->name,
+                                            'points' => $seventhChild->points
+                                        );
+
+                                        $eightthChilds = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points')->where('role','user')->where('sponsor_code',$seventhChild->joining_code)->get();
+                                        foreach($eightthChilds as $eightthChild){
+                                            $allUsers[] = array(
+                                                'id' => $eightthChild->id,
+                                                'name' => $eightthChild->name,
+                                                'email' => $eightthChild->email,
+                                                'contact' => $eightthChild->contact,
+                                                'cnic' => $user->cnic,
+                                                'joining_code' => $eightthChild->joining_code,
+                                                'joining_date' => $eightthChild->joining_date,
+                                                'sponsor_code' => $eightthChild->sponsor_code,
+                                                'sponsor_name' => $seventhChild->name,
+                                                'points' => $eightthChild->points
+                                            );
+
+
+                                        }
+
+
+                                    }
+
+
+                                }
+
+
+                            }
+
+
+                        }
+
+
+                    }
+
+                }
+
+
+            }
+        }
+        else{
+            $allUsers = [];
+        }
+
+
+
+        return view('dashboard', compact('allUsers'));
+    }
+
     public function add_user(){
         return view('invite-user');
     }
