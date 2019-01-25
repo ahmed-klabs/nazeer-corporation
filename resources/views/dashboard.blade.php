@@ -43,8 +43,9 @@
                                     <td>{{ $user['joining_date'] }}</td>
                                     <td>{{ $user['points'] }}</td>
                                     <td>{{ $user['sponsor_code'] }}</td>
-                                    <td>
-                                        <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">View</a>
+                                    <td style="display: inline-flex">
+                                        <a class="btn btn-warning btn-xs" href="/user/{{$user['id']}}">Bouns</a>
+                                        <a class="btn btn-primary btn-xs" style="margin-left: 10px;" href="/user_dashboard/{{ $user['id'] }}">Lines</a>
                                     </td>
                                 </tr>
                             @endforeach
