@@ -496,36 +496,192 @@ class HomeController extends Controller
     }
 
     public function profile(){
-        // for child Count
-//        $sponser_code = Auth::User()->joining_code;
+
+//        $userData = Auth::User();
+//        $userSponserCode = $userData->joining_code;
+//        $userAmount = $userData->amount;
+//        $userPoints = $userData->points;
+//        $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 //
-//        $childCount = User::where('sponsor_code', $sponser_code)->count();
-//        $userDetail = User::find(Auth::user()->id);
+//        $matchingBonus = 0;
+//        $totalCustomers = 0;
+//        $childsAmount = 0;
+//        $childsPoints = 0;
+//        $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
+//        if(!empty($firstChilds)){
 //
-//        return view('profile', compact('userDetail','childCount'));
+//            $totalCustomers += count($firstChilds);
+//
+//            if($totalCustomers == 3){
+//                $matchingBonus = 1;
+//            }
+//
+//            foreach ($firstChilds as $firstChild){
+//                $childsAmount += $firstChild->amount;
+//                $childsPoints +=  $firstChild->points;
+//
+//                $secondChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $firstChild->joining_code)->get();
+//                if(!empty($secondChilds)){
+//
+//                    $totalCustomers += count($secondChilds);
+//                    foreach ($secondChilds as $secondChild){
+//                        $childsAmount += $secondChild->amount;
+//                        $childsPoints +=  $secondChild->points;
+//
+//                        $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
+//                        if(!empty($thirdChilds)){
+//
+//                            $totalCustomers += count($thirdChilds);
+//                            foreach ($thirdChilds as $thirdChild){
+//                                $childsAmount += $thirdChild->amount;
+//                                $childsPoints +=  $thirdChild->points;
+//
+//                                $forthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $thirdChild->joining_code)->get();
+//                                if(!empty($forthChilds)){
+//
+//                                    $totalCustomers += count($forthChilds);
+//                                    foreach ($forthChilds as $forthChild){
+//                                        $childsAmount += $forthChild->amount;
+//                                        $childsPoints +=  $forthChild->points;
+//
+//                                        $fivthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $forthChild->joining_code)->get();
+//                                        if(!empty($fivthChilds)){
+//
+//                                            $totalCustomers += count($fivthChilds);
+//                                            foreach ($fivthChilds as $fivthChild){
+//                                                $childsAmount += $fivthChild->amount;
+//                                                $childsPoints +=  $fivthChild->points;
+//
+//                                                $sixthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $fivthChild->joining_code)->get();
+//                                                if(!empty($sixthChilds)){
+//
+//                                                    $totalCustomers += count($sixthChilds);
+//                                                    foreach ($sixthChilds as $sixthChild){
+//                                                        $childsAmount += $sixthChild->amount;
+//                                                        $childsPoints +=  $sixthChild->points;
+//
+//                                                        $seventhChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $sixthChild->joining_code)->get();
+//                                                        if(!empty($seventhChilds)){
+//
+//                                                            $totalCustomers += count($seventhChilds);
+//                                                            foreach ($seventhChilds as $seventhChild){
+//                                                                $childsAmount += $seventhChild->amount;
+//                                                                $childsPoints +=  $seventhChild->points;
+//
+//                                                                $eighthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $seventhChild->joining_code)->get();
+//                                                                if(!empty($eighthChilds)){
+//
+//                                                                    $totalCustomers += count($eighthChilds);
+//                                                                    foreach ($eighthChilds as $eighthChild){
+//                                                                        $childsAmount += $eighthChild->amount;
+//                                                                        $childsPoints +=  $eighthChild->points;
+//                                                                    }
+//
+//                                                                }
+//
+//                                                            }
+//
+//                                                        }
+//
+//                                                    }
+//
+//                                                }
+//
+//                                            }
+//
+//                                        }
+//
+//                                    }
+//
+//                                }
+//
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//
+//        $totalAmount = $childsAmount + $userAmount;
+//        $totalPoints = $childsPoints + $userPoints;
+//        $customerPercentage = 0;
+//        $rank = 'Sales Officer';
+//
+//        $directBonus = 5;
+//        if($userPoints < 40){
+//            $directBonus = 0;
+//        }
+//
+//
+//
+//            if($totalPoints >= 160){
+//                $customerPercentage = 15;
+//                $rank = 'Asst. Sales Manager';
+//            }
+//            else if($totalPoints >= 520){
+//                $customerPercentage = 20;
+//                $rank = 'Deputy Sales Manager';
+//            }
+//            else if($totalPoints >= 1600){
+//                $customerPercentage = 25;
+//                $rank = 'Sales Manager';
+//            }
+//            else if($totalPoints >= 4840){
+//                $customerPercentage = 30;
+//                $rank = 'Executive Sales Manager';
+//            }
+//            else if($totalPoints >= 14560){
+//                $customerPercentage = 35;
+//                $rank = 'Asst. General Manager';
+//            }
+//            else if($totalPoints >= 43720){
+//                $customerPercentage = 40;
+//                $rank = 'Deputy General Manager';
+//            }
+//            else if($totalPoints >= 131200){
+//                $customerPercentage = 45;
+//                $rank = 'General Manager';
+//            }
+//            else if($totalCustomers > 0){
+//                $customerPercentage = 15;
+//            }
+//
+//
+//        $totalPercentage = $customerPercentage + 5;
+//
+//        return view('profile', compact('userData','totalCustomers','totalAmount','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus'));
 
         $userData = Auth::User();
         $userSponserCode = $userData->joining_code;
         $userAmount = $userData->amount;
         $userPoints = $userData->points;
+        $userFilerStatus = 'non-filer';
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
-        $matchingBonus = 0;
+
         $totalCustomers = 0;
+        $childsAmountFirstRow = 0;
         $childsAmount = 0;
+        $childsPointsFirstRow = 0;
         $childsPoints = 0;
         $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
         if(!empty($firstChilds)){
 
             $totalCustomers += count($firstChilds);
 
-            if($totalCustomers == 3){
-                $matchingBonus = 1;
-            }
-
             foreach ($firstChilds as $firstChild){
-                $childsAmount += $firstChild->amount;
-                $childsPoints +=  $firstChild->points;
+
+//                $childsAmount += $firstChild->amount;
+//                $childsPoints +=  $firstChild->points;
+
+                $childsAmountFirstRow += $firstChild->amount;
+                $childsPointsFirstRow +=  $firstChild->points;
 
                 $secondChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $firstChild->joining_code)->get();
                 if(!empty($secondChilds)){
@@ -615,179 +771,29 @@ class HomeController extends Controller
         }
 
 
-        $totalAmount = $childsAmount + $userAmount;
-        $totalPoints = $childsPoints + $userPoints;
-        $customerPercentage = 0;
-        $rank = 'Sales Officer';
-
-        $directBonus = 5;
-        if($userPoints < 40){
-            $directBonus = 0;
-        }
-
-
-
-            if($totalPoints >= 160){
-                $customerPercentage = 15;
-                $rank = 'Asst. Sales Manager';
-            }
-            else if($totalPoints >= 520){
-                $customerPercentage = 20;
-                $rank = 'Deputy Sales Manager';
-            }
-            else if($totalPoints >= 1600){
-                $customerPercentage = 25;
-                $rank = 'Sales Manager';
-            }
-            else if($totalPoints >= 4840){
-                $customerPercentage = 30;
-                $rank = 'Executive Sales Manager';
-            }
-            else if($totalPoints >= 14560){
-                $customerPercentage = 35;
-                $rank = 'Asst. General Manager';
-            }
-            else if($totalPoints >= 43720){
-                $customerPercentage = 40;
-                $rank = 'Deputy General Manager';
-            }
-            else if($totalPoints >= 131200){
-                $customerPercentage = 45;
-                $rank = 'General Manager';
-            }
-            else if($totalCustomers > 0){
-                $customerPercentage = 15;
-            }
-
-
-        $totalPercentage = $customerPercentage + 5;
-
-        return view('profile', compact('userData','totalCustomers','totalAmount','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus'));
-
-    }
-
-    public function user_profile($id){
-
-        $userData = User::find($id);
-        $userSponserCode = $userData->joining_code;
-        $userAmount = $userData->amount;
-        $userPoints = $userData->points;
-        $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
-
+        // Matching Bonus based on monthly 3 user
         $matchingBonus = 0;
-        $totalCustomers = 0;
-        $childsAmount = 0;
-        $childsPoints = 0;
-        $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
-        if(!empty($firstChilds)){
-
-            $totalCustomers += count($firstChilds);
-
-            if($totalCustomers == 3){
-                $matchingBonus = 1;
-            }
-
-            foreach ($firstChilds as $firstChild){
-                $childsAmount += $firstChild->amount;
-                $childsPoints +=  $firstChild->points;
-
-                $secondChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $firstChild->joining_code)->get();
-                if(!empty($secondChilds)){
-
-                    $totalCustomers += count($secondChilds);
-                    foreach ($secondChilds as $secondChild){
-                        $childsAmount += $secondChild->amount;
-                        $childsPoints +=  $secondChild->points;
-
-                        $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
-                        if(!empty($thirdChilds)){
-
-                            $totalCustomers += count($thirdChilds);
-                            foreach ($thirdChilds as $thirdChild){
-                                $childsAmount += $thirdChild->amount;
-                                $childsPoints +=  $thirdChild->points;
-
-                                $forthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $thirdChild->joining_code)->get();
-                                if(!empty($forthChilds)){
-
-                                    $totalCustomers += count($forthChilds);
-                                    foreach ($forthChilds as $forthChild){
-                                        $childsAmount += $forthChild->amount;
-                                        $childsPoints +=  $forthChild->points;
-
-                                        $fivthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $forthChild->joining_code)->get();
-                                        if(!empty($fivthChilds)){
-
-                                            $totalCustomers += count($fivthChilds);
-                                            foreach ($fivthChilds as $fivthChild){
-                                                $childsAmount += $fivthChild->amount;
-                                                $childsPoints +=  $fivthChild->points;
-
-                                                $sixthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $fivthChild->joining_code)->get();
-                                                if(!empty($sixthChilds)){
-
-                                                    $totalCustomers += count($sixthChilds);
-                                                    foreach ($sixthChilds as $sixthChild){
-                                                        $childsAmount += $sixthChild->amount;
-                                                        $childsPoints +=  $sixthChild->points;
-
-                                                        $seventhChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $sixthChild->joining_code)->get();
-                                                        if(!empty($seventhChilds)){
-
-                                                            $totalCustomers += count($seventhChilds);
-                                                            foreach ($seventhChilds as $seventhChild){
-                                                                $childsAmount += $seventhChild->amount;
-                                                                $childsPoints +=  $seventhChild->points;
-
-                                                                $eighthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $seventhChild->joining_code)->get();
-                                                                if(!empty($eighthChilds)){
-
-                                                                    $totalCustomers += count($eighthChilds);
-                                                                    foreach ($eighthChilds as $eighthChild){
-                                                                        $childsAmount += $eighthChild->amount;
-                                                                        $childsPoints +=  $eighthChild->points;
-                                                                    }
-
-                                                                }
-
-                                                            }
-
-                                                        }
-
-                                                    }
-
-                                                }
-
-                                            }
-
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
+        $userDataForMatchingBonus = User::select('created_at')->where('sponsor_code', $userSponserCode)->get();
+        $userCount = 0;
+        foreach ($userDataForMatchingBonus as $dt){
+            if(date('m-Y') == date('m-Y',strtotime($dt->created_at))){
+                $userCount++;
             }
 
         }
 
+        if($userCount >= 3){
+            $matchingBonus = 1;
+        }
+        // End matcing bonus
 
-        $totalAmount = $childsAmount + $userAmount;
-        $totalPoints = $childsPoints + $userPoints;
+
+        $totalPoints = $childsPointsFirstRow + $childsPoints + $userPoints;
+        $childsPoints = $childsPointsFirstRow + $childsPoints;
         $customerPercentage = 0;
         $rank = 'Sales Officer';
 
-        $directBonus = 5;
-        if($userPoints < 40){
-            $directBonus = 0;
-        }
+
 
 
         if($totalPoints >= 160){
@@ -822,10 +828,251 @@ class HomeController extends Controller
             $customerPercentage = 15;
         }
 
-        $totalPercentage = $customerPercentage + 5;
+        $directBonus = 5;
+        if($userPoints < 40){
+            $directBonus = 0;
+        }
+
+        $totalPercentage = $customerPercentage + $directBonus;
+
+        $amountToBePaid = 0;
+        if($directBonus > 0){
+            $amountToBePaid += ($userAmount / 100) * $directBonus;
+        }
+
+        if($childsAmountFirstRow > 0){
+            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+        }
+
+        if($childsAmount > 0){
+            $amountToBePaid += ($childsAmount / 100) * 5;
+        }
+
+        if($userFilerStatus == 'filer'){
+            $filerDeduction = ($amountToBePaid / 100) * 12;
+        }
+        else{
+            $filerDeduction = ($amountToBePaid / 100) * 15;
+        }
+
+        $computerFee = 150;
+
+        $amountToBePaidAfterDeduction = ($amountToBePaid - $filerDeduction) - $computerFee;
 
 
-        return view('profile', compact('userData','totalCustomers','totalAmount','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus'));
+
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee'));
+
+    }
+
+    public function user_profile($id){
+
+        $userData = User::find($id);
+        $userSponserCode = $userData->joining_code;
+        $userAmount = $userData->amount;
+        $userPoints = $userData->points;
+        $userFilerStatus = 'non-filer';
+        $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
+
+
+        $totalCustomers = 0;
+        $childsAmountFirstRow = 0;
+        $childsAmount = 0;
+        $childsPointsFirstRow = 0;
+        $childsPoints = 0;
+        $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
+        if(!empty($firstChilds)){
+
+            $totalCustomers += count($firstChilds);
+
+            foreach ($firstChilds as $firstChild){
+
+//                $childsAmount += $firstChild->amount;
+//                $childsPoints +=  $firstChild->points;
+
+                $childsAmountFirstRow += $firstChild->amount;
+                $childsPointsFirstRow +=  $firstChild->points;
+
+                $secondChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $firstChild->joining_code)->get();
+                if(!empty($secondChilds)){
+
+                    $totalCustomers += count($secondChilds);
+                    foreach ($secondChilds as $secondChild){
+                        $childsAmount += $secondChild->amount;
+                        $childsPoints +=  $secondChild->points;
+
+                        $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
+                        if(!empty($thirdChilds)){
+
+                            $totalCustomers += count($thirdChilds);
+                            foreach ($thirdChilds as $thirdChild){
+                                $childsAmount += $thirdChild->amount;
+                                $childsPoints +=  $thirdChild->points;
+
+                                $forthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $thirdChild->joining_code)->get();
+                                if(!empty($forthChilds)){
+
+                                    $totalCustomers += count($forthChilds);
+                                    foreach ($forthChilds as $forthChild){
+                                        $childsAmount += $forthChild->amount;
+                                        $childsPoints +=  $forthChild->points;
+
+                                        $fivthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $forthChild->joining_code)->get();
+                                        if(!empty($fivthChilds)){
+
+                                            $totalCustomers += count($fivthChilds);
+                                            foreach ($fivthChilds as $fivthChild){
+                                                $childsAmount += $fivthChild->amount;
+                                                $childsPoints +=  $fivthChild->points;
+
+                                                $sixthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $fivthChild->joining_code)->get();
+                                                if(!empty($sixthChilds)){
+
+                                                    $totalCustomers += count($sixthChilds);
+                                                    foreach ($sixthChilds as $sixthChild){
+                                                        $childsAmount += $sixthChild->amount;
+                                                        $childsPoints +=  $sixthChild->points;
+
+                                                        $seventhChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $sixthChild->joining_code)->get();
+                                                        if(!empty($seventhChilds)){
+
+                                                            $totalCustomers += count($seventhChilds);
+                                                            foreach ($seventhChilds as $seventhChild){
+                                                                $childsAmount += $seventhChild->amount;
+                                                                $childsPoints +=  $seventhChild->points;
+
+                                                                $eighthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $seventhChild->joining_code)->get();
+                                                                if(!empty($eighthChilds)){
+
+                                                                    $totalCustomers += count($eighthChilds);
+                                                                    foreach ($eighthChilds as $eighthChild){
+                                                                        $childsAmount += $eighthChild->amount;
+                                                                        $childsPoints +=  $eighthChild->points;
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                        }
+
+                                                    }
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        // Matching Bonus based on monthly 3 user
+        $matchingBonus = 0;
+        $userDataForMatchingBonus = User::select('created_at')->where('sponsor_code', $userSponserCode)->get();
+        $userCount = 0;
+        foreach ($userDataForMatchingBonus as $dt){
+            if(date('m-Y') == date('m-Y',strtotime($dt->created_at))){
+                $userCount++;
+            }
+
+        }
+
+        if($userCount >= 3){
+            $matchingBonus = 1;
+        }
+        // End matcing bonus
+
+
+        $totalPoints = $childsPointsFirstRow + $childsPoints + $userPoints;
+        $childsPoints = $childsPointsFirstRow + $childsPoints;
+        $customerPercentage = 0;
+        $rank = 'Sales Officer';
+
+
+
+
+        if($totalPoints >= 160){
+            $customerPercentage = 15;
+            $rank = 'Asst. Sales Manager';
+        }
+        else if($totalPoints >= 520){
+            $customerPercentage = 20;
+            $rank = 'Deputy Sales Manager';
+        }
+        else if($totalPoints >= 1600){
+            $customerPercentage = 25;
+            $rank = 'Sales Manager';
+        }
+        else if($totalPoints >= 4840){
+            $customerPercentage = 30;
+            $rank = 'Executive Sales Manager';
+        }
+        else if($totalPoints >= 14560){
+            $customerPercentage = 35;
+            $rank = 'Asst. General Manager';
+        }
+        else if($totalPoints >= 43720){
+            $customerPercentage = 40;
+            $rank = 'Deputy General Manager';
+        }
+        else if($totalPoints >= 131200){
+            $customerPercentage = 45;
+            $rank = 'General Manager';
+        }
+        else if($totalCustomers > 0){
+            $customerPercentage = 15;
+        }
+
+        $directBonus = 5;
+        if($userPoints < 40){
+            $directBonus = 0;
+        }
+
+        $totalPercentage = $customerPercentage + $directBonus;
+
+        $amountToBePaid = 0;
+        if($directBonus > 0){
+            $amountToBePaid += ($userAmount / 100) * $directBonus;
+        }
+
+        if($childsAmountFirstRow > 0){
+            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+        }
+
+        if($childsAmount > 0){
+            $amountToBePaid += ($childsAmount / 100) * 5;
+        }
+
+        if($userFilerStatus == 'filer'){
+            $filerDeduction = ($amountToBePaid / 100) * 12;
+        }
+        else{
+            $filerDeduction = ($amountToBePaid / 100) * 15;
+        }
+
+        $computerFee = 150;
+
+        $amountToBePaidAfterDeduction = ($amountToBePaid - $filerDeduction) - $computerFee;
+
+
+
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee'));
+
     }
     // sponsor Code Validation
     public function checkChild(Request $request){

@@ -65,9 +65,23 @@
                                     <td>{{ $totalPercentage . "%" }}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Amount to be paid</b></td>
-                                    <td>{{ "PKR " . ($totalAmount * $totalPercentage ) / 100 }}</td>
+                                    <td><b>Total Amount</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaid }}</td>
                                 </tr>
+
+                                <tr>
+                                    <td><b>Filer/Non-Filer Deduction</b></td>
+                                    <td>{{ "Rs. " . $filerDeduction }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Computer Fee</b></td>
+                                    <td>{{ "Rs. " . $computerFee }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Amount to be paid</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaidAfterDeduction }}</td>
+                                </tr>
+
                                 <tr>
                                     <td><b>Date Of Checque</b></td>
                                     <td>{{ $dateOfCheck  }}</td>
