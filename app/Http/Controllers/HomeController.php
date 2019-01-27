@@ -813,36 +813,33 @@ class HomeController extends Controller
 
 
 
-        if($totalPoints >= 160){
+        if($totalPoints < 160 && $totalCustomers > 0){
             $customerPercentage = 15;
             $rank = 'Asst. Sales Manager';
         }
-        else if($totalPoints >= 520){
+        else if($totalPoints >= 160){
             $customerPercentage = 20;
             $rank = 'Deputy Sales Manager';
         }
-        else if($totalPoints >= 1600){
+        else if($totalPoints >= 520){
             $customerPercentage = 25;
             $rank = 'Sales Manager';
         }
-        else if($totalPoints >= 4840){
+        else if($totalPoints >= 1600){
             $customerPercentage = 30;
             $rank = 'Executive Sales Manager';
         }
-        else if($totalPoints >= 14560){
+        else if($totalPoints >= 4840){
             $customerPercentage = 35;
             $rank = 'Asst. General Manager';
         }
-        else if($totalPoints >= 43720){
+        else if($totalPoints >= 14560){
             $customerPercentage = 40;
             $rank = 'Deputy General Manager';
         }
-        else if($totalPoints >= 131200){
+        else if($totalPoints >= 43720){
             $customerPercentage = 45;
             $rank = 'General Manager';
-        }
-        else if($totalCustomers > 0){
-            $customerPercentage = 15;
         }
 
         $directBonus = 5;
@@ -1028,36 +1025,33 @@ class HomeController extends Controller
 
 
 
-        if($totalPoints >= 160){
+        if($totalPoints < 160 && $totalCustomers > 0){
             $customerPercentage = 15;
             $rank = 'Asst. Sales Manager';
         }
-        else if($totalPoints >= 520){
+        else if($totalPoints >= 160){
             $customerPercentage = 20;
             $rank = 'Deputy Sales Manager';
         }
-        else if($totalPoints >= 1600){
+        else if($totalPoints >= 520){
             $customerPercentage = 25;
             $rank = 'Sales Manager';
         }
-        else if($totalPoints >= 4840){
+        else if($totalPoints >= 1600){
             $customerPercentage = 30;
             $rank = 'Executive Sales Manager';
         }
-        else if($totalPoints >= 14560){
+        else if($totalPoints >= 4840){
             $customerPercentage = 35;
             $rank = 'Asst. General Manager';
         }
-        else if($totalPoints >= 43720){
+        else if($totalPoints >= 14560){
             $customerPercentage = 40;
             $rank = 'Deputy General Manager';
         }
-        else if($totalPoints >= 131200){
+        else if($totalPoints >= 43720){
             $customerPercentage = 45;
             $rank = 'General Manager';
-        }
-        else if($totalCustomers > 0){
-            $customerPercentage = 15;
         }
 
         $directBonus = 5;
@@ -1129,7 +1123,7 @@ class HomeController extends Controller
         }
         else{
             $userLastId = User::select('id')->orderBy('id', 'desc')->first();
-            $email = "0000" . strval($userLastId->id + 1) . "@nazeer-corporation.com";
+//            $email = "0000" . strval($userLastId->id + 1) . "@nazeer-corporation.com";
 
             $user = new User();
             $user->name = $request->name;
@@ -1150,7 +1144,7 @@ class HomeController extends Controller
             $user->amount = $request->amount;
             $user->points = $request->points;
             $user->role = "user";
-            $user->email = $email;
+            $user->email = $request->email;
             $user->password = bcrypt($request->cnic);
 
             $user->save();

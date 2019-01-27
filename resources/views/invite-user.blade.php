@@ -116,8 +116,8 @@
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('email') ? 'has-error': ''; ?>">
                                     <label for="email">Email</label>
-                                    {{--<input type="text" class="form-control" name="email" id="email" placeholder="Email" required>--}}
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Will be autogenerate on save" disabled>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    {{--<input type="text" class="form-control" name="email" id="email" placeholder="Will be autogenerate on save" disabled>--}}
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('pwd') ? 'has-error': ''; ?>">
                                     <label for="new-user-pwd">Password</label>
