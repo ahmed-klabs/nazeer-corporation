@@ -144,27 +144,28 @@ class HomeController extends Controller
         if($totalPoints <= 40){
             $rank = 'Sales Officer';
         }
-        else if($totalPoints >= 160){
+        else if($totalPoints > 40 && $totalPoints < 160){
             $rank = 'Asst. Sales Manager';
         }
-        else if($totalPoints >= 520){
+        else if($totalPoints >= 160){
             $rank = 'Deputy Sales Manager';
         }
-        else if($totalPoints >= 1600){
+        else if($totalPoints >= 520){
             $rank = 'Sales Manager';
         }
-        else if($totalPoints >= 4840){
+        else if($totalPoints >= 1600){
             $rank = 'Executive Sales Manager';
         }
-        else if($totalPoints >= 14560){
+        else if($totalPoints >= 4840){
             $rank = 'Asst. General Manager';
         }
-        else if($totalPoints >= 43720){
+        else if($totalPoints >= 14560){
             $rank = 'Deputy General Manager';
         }
-        else if($totalPoints >= 131200){
+        else if($totalPoints >= 43720){
             $rank = 'General Manager';
         }
+
 
 
         return view('home', compact('userData','totalPoints','userCode','rank'));
