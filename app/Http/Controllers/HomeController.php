@@ -1146,7 +1146,7 @@ class HomeController extends Controller
             $user->points = $request->points;
             $user->role = "user";
             $user->email = $request->email;
-            $user->password = bcrypt($request->cnic);
+            $user->password = bcrypt(preg_replace('/[^A-Za-z0-9\-]/', '', $request->cnic));
 
             $user->save();
             return redirect('/home');
