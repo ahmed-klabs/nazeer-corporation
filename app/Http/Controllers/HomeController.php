@@ -849,9 +849,15 @@ class HomeController extends Controller
             $customerPercentage = 20;
             $rank = 'Deputy Sales Manager';
         }
-        else if($totalPoints > 40 && $totalCustomers > 0){
+        else if($totalPoints > 160 && $totalCustomers > 0){
             $customerPercentage = 15;
             $rank = 'Asst. Sales Manager';
+        }
+        else if($totalPoints > 40 && $totalCustomers > 0){
+            $customerPercentage = 15;
+        }
+        else if($totalCustomers > 0){
+            $customerPercentage = 15;
         }
 
         $directBonus = 5;
@@ -890,19 +896,19 @@ class HomeController extends Controller
 
 
         if($userFilerStatus == 'filer'){
-            $filerDeduction = ($amountToBePaid / 100) * 12;
+            $filerDeduction = ($totalAmountToBePaid / 100) * 12;
         }
         else{
-            $filerDeduction = ($amountToBePaid / 100) * 15;
+            $filerDeduction = ($totalAmountToBePaid / 100) * 15;
         }
 
         $computerFee = 150;
 
-        $amountToBePaidAfterDeduction = ($amountToBePaid - $filerDeduction) - $computerFee;
+        $amountToBePaidAfterDeduction = ($totalAmountToBePaid - $filerDeduction) - $computerFee;
 
 
 
-        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid'));
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching'));
 
     }
 
@@ -1077,9 +1083,15 @@ class HomeController extends Controller
             $customerPercentage = 20;
             $rank = 'Deputy Sales Manager';
         }
-        else if($totalPoints > 40 && $totalCustomers > 0){
+        else if($totalPoints > 160 && $totalCustomers > 0){
             $customerPercentage = 15;
             $rank = 'Asst. Sales Manager';
+        }
+        else if($totalPoints > 40 && $totalCustomers > 0){
+            $customerPercentage = 15;
+        }
+        else if($totalCustomers > 0){
+            $customerPercentage = 15;
         }
 
         $directBonus = 5;
@@ -1118,15 +1130,15 @@ class HomeController extends Controller
 
 
         if($userFilerStatus == 'filer'){
-            $filerDeduction = ($amountToBePaid / 100) * 12;
+            $filerDeduction = ($totalAmountToBePaid / 100) * 12;
         }
         else{
-            $filerDeduction = ($amountToBePaid / 100) * 15;
+            $filerDeduction = ($totalAmountToBePaid / 100) * 15;
         }
 
         $computerFee = 150;
 
-        $amountToBePaidAfterDeduction = ($amountToBePaid - $filerDeduction) - $computerFee;
+        $amountToBePaidAfterDeduction = ($totalAmountToBePaid - $filerDeduction) - $computerFee;
 
 
 
