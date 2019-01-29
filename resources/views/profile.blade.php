@@ -64,9 +64,25 @@
                                     <td><b>Percentage</b></td>
                                     <td>{{ $totalPercentage . "%" }}</td>
                                 </tr>
+
+                                <tr>
+                                    <td><b>Direct Amount</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaidDirect }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>In-Direct Amount</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaid }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>Matching Bonus</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaidMatching }}</td>
+                                </tr>
+
                                 <tr>
                                     <td><b>Total Amount</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaid }}</td>
+                                    <td>{{ "Rs. " . $totalAmountToBePaid }}</td>
                                 </tr>
 
                                 <tr>

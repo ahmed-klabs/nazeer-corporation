@@ -863,8 +863,9 @@ class HomeController extends Controller
 
 
         $amountToBePaid = 0;
+        $amountToBePaidDirect = 0;
         if($directBonus > 0){
-            $amountToBePaid += ($userAmount / 100) * $directBonus;
+            $amountToBePaidDirect += ($userAmount / 100) * $directBonus;
         }
 
         if($childsAmountFirstRow > 0){
@@ -879,9 +880,12 @@ class HomeController extends Controller
             $amountToBePaid += ($childsAmount / 100) * 5;
         }
 
+        $amountToBePaidMatching = 0;
         if($matchingBonus > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * 1;
+            $amountToBePaidMatching += ($childsAmountFirstRow / 100) * 1;
         }
+
+        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidMatching;
 
 
 
@@ -898,7 +902,7 @@ class HomeController extends Controller
 
 
 
-        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee'));
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid'));
 
     }
 
@@ -1087,8 +1091,9 @@ class HomeController extends Controller
 
 
         $amountToBePaid = 0;
+        $amountToBePaidDirect = 0;
         if($directBonus > 0){
-            $amountToBePaid += ($userAmount / 100) * $directBonus;
+            $amountToBePaidDirect += ($userAmount / 100) * $directBonus;
         }
 
         if($childsAmountFirstRow > 0){
@@ -1103,9 +1108,12 @@ class HomeController extends Controller
             $amountToBePaid += ($childsAmount / 100) * 5;
         }
 
+        $amountToBePaidMatching = 0;
         if($matchingBonus > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * 1;
+            $amountToBePaidMatching += ($childsAmountFirstRow / 100) * 1;
         }
+
+        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidMatching;
 
 
 
@@ -1122,7 +1130,7 @@ class HomeController extends Controller
 
 
 
-        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee'));
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching'));
 
     }
     // sponsor Code Validation
