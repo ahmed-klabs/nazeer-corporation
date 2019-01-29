@@ -682,8 +682,10 @@ class HomeController extends Controller
 
         $totalCustomers = 0;
         $childsAmountFirstRow = 0;
+        $childsAmountSecondRow = 0;
         $childsAmount = 0;
         $childsPointsFirstRow = 0;
+        $childsPointsSecondRow = 0;
         $childsPoints = 0;
         $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
         if(!empty($firstChilds)){
@@ -703,8 +705,12 @@ class HomeController extends Controller
 
                     $totalCustomers += count($secondChilds);
                     foreach ($secondChilds as $secondChild){
-                        $childsAmount += $secondChild->amount;
-                        $childsPoints +=  $secondChild->points;
+
+//                        $childsAmount += $secondChild->amount;
+//                        $childsPoints +=  $secondChild->points;
+
+                        $childsAmountSecondRow += $secondChild->amount;
+                        $childsPointsSecondRow +=  $secondChild->points;
 
                         $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
                         if(!empty($thirdChilds)){
@@ -811,6 +817,14 @@ class HomeController extends Controller
 
 
 
+        $totalPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints + $userPoints;
+        $childsPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints;
+        $customerPercentage = 0;
+        $rank = 'Sales Officer';
+
+
+
+
         if($totalPoints >= 131200){
             $customerPercentage = 45;
             $rank = 'General Manager';
@@ -847,13 +861,18 @@ class HomeController extends Controller
 
         $totalPercentage = $customerPercentage + $directBonus + $matchingBonus;
 
+
         $amountToBePaid = 0;
         if($directBonus > 0){
             $amountToBePaid += ($userAmount / 100) * $directBonus;
         }
 
         if($childsAmountFirstRow > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * 15;
+        }
+
+        if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
+            $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
         }
 
         if($childsAmount > 0){
@@ -863,6 +882,8 @@ class HomeController extends Controller
         if($matchingBonus > 0){
             $amountToBePaid += ($childsAmountFirstRow / 100) * 1;
         }
+
+
 
         if($userFilerStatus == 'filer'){
             $filerDeduction = ($amountToBePaid / 100) * 12;
@@ -894,8 +915,10 @@ class HomeController extends Controller
 
         $totalCustomers = 0;
         $childsAmountFirstRow = 0;
+        $childsAmountSecondRow = 0;
         $childsAmount = 0;
         $childsPointsFirstRow = 0;
+        $childsPointsSecondRow = 0;
         $childsPoints = 0;
         $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
         if(!empty($firstChilds)){
@@ -915,8 +938,11 @@ class HomeController extends Controller
 
                     $totalCustomers += count($secondChilds);
                     foreach ($secondChilds as $secondChild){
-                        $childsAmount += $secondChild->amount;
-                        $childsPoints +=  $secondChild->points;
+//                        $childsAmount += $secondChild->amount;
+//                        $childsPoints +=  $secondChild->points;
+
+                        $childsAmountSecondRow += $secondChild->amount;
+                        $childsPointsSecondRow +=  $secondChild->points;
 
                         $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
                         if(!empty($thirdChilds)){
@@ -1015,8 +1041,8 @@ class HomeController extends Controller
         // End matcing bonus
 
 
-        $totalPoints = $childsPointsFirstRow + $childsPoints + $userPoints;
-        $childsPoints = $childsPointsFirstRow + $childsPoints;
+        $totalPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints + $userPoints;
+        $childsPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints;
         $customerPercentage = 0;
         $rank = 'Sales Officer';
 
@@ -1066,7 +1092,11 @@ class HomeController extends Controller
         }
 
         if($childsAmountFirstRow > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * 15;
+        }
+
+        if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
+            $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
         }
 
         if($childsAmount > 0){
