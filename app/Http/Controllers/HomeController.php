@@ -826,31 +826,31 @@ class HomeController extends Controller
 
 
         if($totalPoints >= 131200){
-            $customerPercentage = 45;
+            $customerPercentage = 50;
             $rank = 'General Manager';
         }
         else if($totalPoints >= 43720){
-            $customerPercentage = 40;
+            $customerPercentage = 45;
             $rank = 'Deputy General Manager';
         }
         else if($totalPoints >= 14560){
-            $customerPercentage = 35;
+            $customerPercentage = 40;
             $rank = 'Asst. General Manager';
         }
         else if($totalPoints >= 4840){
-            $customerPercentage = 30;
+            $customerPercentage = 35;
             $rank = 'Executive Sales Manager';
         }
         else if($totalPoints >= 1600){
-            $customerPercentage = 25;
+            $customerPercentage = 30;
             $rank = 'Sales Manager';
         }
         else if($totalPoints >= 520){
-            $customerPercentage = 20;
+            $customerPercentage = 25;
             $rank = 'Deputy Sales Manager';
         }
         else if($totalPoints > 160 && $totalCustomers > 0){
-            $customerPercentage = 15;
+            $customerPercentage = 20;
             $rank = 'Asst. Sales Manager';
         }
         else if($totalPoints > 40 && $totalCustomers > 0){
@@ -875,7 +875,7 @@ class HomeController extends Controller
         }
 
         if($childsAmountFirstRow > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * 15;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
         }
 
         if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
@@ -1060,31 +1060,31 @@ class HomeController extends Controller
 
 
         if($totalPoints >= 131200){
-            $customerPercentage = 45;
+            $customerPercentage = 50;
             $rank = 'General Manager';
         }
         else if($totalPoints >= 43720){
-            $customerPercentage = 40;
+            $customerPercentage = 45;
             $rank = 'Deputy General Manager';
         }
         else if($totalPoints >= 14560){
-            $customerPercentage = 35;
+            $customerPercentage = 40;
             $rank = 'Asst. General Manager';
         }
         else if($totalPoints >= 4840){
-            $customerPercentage = 30;
+            $customerPercentage = 35;
             $rank = 'Executive Sales Manager';
         }
         else if($totalPoints >= 1600){
-            $customerPercentage = 25;
+            $customerPercentage = 30;
             $rank = 'Sales Manager';
         }
         else if($totalPoints >= 520){
-            $customerPercentage = 20;
+            $customerPercentage = 25;
             $rank = 'Deputy Sales Manager';
         }
         else if($totalPoints > 160 && $totalCustomers > 0){
-            $customerPercentage = 15;
+            $customerPercentage = 20;
             $rank = 'Asst. Sales Manager';
         }
         else if($totalPoints > 40 && $totalCustomers > 0){
@@ -1109,7 +1109,7 @@ class HomeController extends Controller
         }
 
         if($childsAmountFirstRow > 0){
-            $amountToBePaid += ($childsAmountFirstRow / 100) * 15;
+            $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
         }
 
         if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
