@@ -511,172 +511,11 @@ class HomeController extends Controller
 
     public function profile(){
 
-//        $userData = Auth::User();
-//        $userSponserCode = $userData->joining_code;
-//        $userAmount = $userData->amount;
-//        $userPoints = $userData->points;
-//        $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
-//
-//        $matchingBonus = 0;
-//        $totalCustomers = 0;
-//        $childsAmount = 0;
-//        $childsPoints = 0;
-//        $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
-//        if(!empty($firstChilds)){
-//
-//            $totalCustomers += count($firstChilds);
-//
-//            if($totalCustomers == 3){
-//                $matchingBonus = 1;
-//            }
-//
-//            foreach ($firstChilds as $firstChild){
-//                $childsAmount += $firstChild->amount;
-//                $childsPoints +=  $firstChild->points;
-//
-//                $secondChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $firstChild->joining_code)->get();
-//                if(!empty($secondChilds)){
-//
-//                    $totalCustomers += count($secondChilds);
-//                    foreach ($secondChilds as $secondChild){
-//                        $childsAmount += $secondChild->amount;
-//                        $childsPoints +=  $secondChild->points;
-//
-//                        $thirdChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $secondChild->joining_code)->get();
-//                        if(!empty($thirdChilds)){
-//
-//                            $totalCustomers += count($thirdChilds);
-//                            foreach ($thirdChilds as $thirdChild){
-//                                $childsAmount += $thirdChild->amount;
-//                                $childsPoints +=  $thirdChild->points;
-//
-//                                $forthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $thirdChild->joining_code)->get();
-//                                if(!empty($forthChilds)){
-//
-//                                    $totalCustomers += count($forthChilds);
-//                                    foreach ($forthChilds as $forthChild){
-//                                        $childsAmount += $forthChild->amount;
-//                                        $childsPoints +=  $forthChild->points;
-//
-//                                        $fivthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $forthChild->joining_code)->get();
-//                                        if(!empty($fivthChilds)){
-//
-//                                            $totalCustomers += count($fivthChilds);
-//                                            foreach ($fivthChilds as $fivthChild){
-//                                                $childsAmount += $fivthChild->amount;
-//                                                $childsPoints +=  $fivthChild->points;
-//
-//                                                $sixthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $fivthChild->joining_code)->get();
-//                                                if(!empty($sixthChilds)){
-//
-//                                                    $totalCustomers += count($sixthChilds);
-//                                                    foreach ($sixthChilds as $sixthChild){
-//                                                        $childsAmount += $sixthChild->amount;
-//                                                        $childsPoints +=  $sixthChild->points;
-//
-//                                                        $seventhChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $sixthChild->joining_code)->get();
-//                                                        if(!empty($seventhChilds)){
-//
-//                                                            $totalCustomers += count($seventhChilds);
-//                                                            foreach ($seventhChilds as $seventhChild){
-//                                                                $childsAmount += $seventhChild->amount;
-//                                                                $childsPoints +=  $seventhChild->points;
-//
-//                                                                $eighthChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $seventhChild->joining_code)->get();
-//                                                                if(!empty($eighthChilds)){
-//
-//                                                                    $totalCustomers += count($eighthChilds);
-//                                                                    foreach ($eighthChilds as $eighthChild){
-//                                                                        $childsAmount += $eighthChild->amount;
-//                                                                        $childsPoints +=  $eighthChild->points;
-//                                                                    }
-//
-//                                                                }
-//
-//                                                            }
-//
-//                                                        }
-//
-//                                                    }
-//
-//                                                }
-//
-//                                            }
-//
-//                                        }
-//
-//                                    }
-//
-//                                }
-//
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-//            }
-//
-//        }
-//
-//
-//        $totalAmount = $childsAmount + $userAmount;
-//        $totalPoints = $childsPoints + $userPoints;
-//        $customerPercentage = 0;
-//        $rank = 'Sales Officer';
-//
-//        $directBonus = 5;
-//        if($userPoints < 40){
-//            $directBonus = 0;
-//        }
-//
-//
-//
-//            if($totalPoints >= 160){
-//                $customerPercentage = 15;
-//                $rank = 'Asst. Sales Manager';
-//            }
-//            else if($totalPoints >= 520){
-//                $customerPercentage = 20;
-//                $rank = 'Deputy Sales Manager';
-//            }
-//            else if($totalPoints >= 1600){
-//                $customerPercentage = 25;
-//                $rank = 'Sales Manager';
-//            }
-//            else if($totalPoints >= 4840){
-//                $customerPercentage = 30;
-//                $rank = 'Executive Sales Manager';
-//            }
-//            else if($totalPoints >= 14560){
-//                $customerPercentage = 35;
-//                $rank = 'Asst. General Manager';
-//            }
-//            else if($totalPoints >= 43720){
-//                $customerPercentage = 40;
-//                $rank = 'Deputy General Manager';
-//            }
-//            else if($totalPoints >= 131200){
-//                $customerPercentage = 45;
-//                $rank = 'General Manager';
-//            }
-//            else if($totalCustomers > 0){
-//                $customerPercentage = 15;
-//            }
-//
-//
-//        $totalPercentage = $customerPercentage + 5;
-//
-//        return view('profile', compact('userData','totalCustomers','totalAmount','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus'));
-
         $userData = Auth::User();
         $userSponserCode = $userData->joining_code;
         $userAmount = $userData->amount;
         $userPoints = $userData->points;
         $userFilerStatus = $userData->filer;
-//        $userFilerStatus = 'non-filer';
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
 
@@ -687,6 +526,8 @@ class HomeController extends Controller
         $childsPointsFirstRow = 0;
         $childsPointsSecondRow = 0;
         $childsPoints = 0;
+        $firstChildRank = '';
+        $secondChildRank = '';
         $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
         if(!empty($firstChilds)){
 
@@ -705,7 +546,6 @@ class HomeController extends Controller
 
                     $totalCustomers += count($secondChilds);
                     foreach ($secondChilds as $secondChild){
-
 //                        $childsAmount += $secondChild->amount;
 //                        $childsPoints +=  $secondChild->points;
 
@@ -781,8 +621,16 @@ class HomeController extends Controller
 
                             }
 
+                            if($childsPoints == 120){
+                                $secondChildRank = 'Asst. Sales Manager';
+                            }
+
                         }
 
+                    }
+
+                    if($childsPointsSecondRow == 120){
+                        $firstChildRank = 'Asst. Sales Manager';
                     }
 
                 }
@@ -809,56 +657,78 @@ class HomeController extends Controller
         // End matcing bonus
 
 
-        $totalPoints = $childsPointsFirstRow + $childsPoints + $userPoints;
-        $childsPoints = $childsPointsFirstRow + $childsPoints;
-        $customerPercentage = 0;
-        $rank = 'Sales Officer';
-
-
-
-
         $totalPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints + $userPoints;
         $childsPoints = $childsPointsFirstRow + $childsPointsSecondRow + $childsPoints;
         $customerPercentage = 0;
         $rank = 'Sales Officer';
 
 
+        if($childsPointsFirstRow >=120){
+
+            if($totalPoints >= 131200){
+                $customerPercentage = 50;
+                $rank = 'General Manager';
+            }
+            else if($totalPoints >= 43720){
+                $customerPercentage = 45;
+                $rank = 'Deputy General Manager';
+            }
+            else if($totalPoints >= 14560){
+                $customerPercentage = 40;
+                $rank = 'Asst. General Manager';
+            }
+            else if($totalPoints >= 4840){
+                $customerPercentage = 35;
+                $rank = 'Executive Sales Manager';
+            }
+            else if($totalPoints >= 1600){
+                $customerPercentage = 30;
+                $rank = 'Sales Manager';
+            }
+            else if($totalPoints >= 520){
+                $customerPercentage = 25;
+                $rank = 'Deputy Sales Manager';
+            }
+            else if($totalPoints >= 160 && $totalCustomers > 0){
+                $customerPercentage = 20;
+                $rank = 'Asst. Sales Manager';
+            }
+            else if($totalPoints >= 40 && $totalCustomers > 0){
+                $customerPercentage = 15;
+            }
+            else if($totalCustomers > 0){
+                $customerPercentage = 15;
+            }
+
+            $childsPointsFirstRowRank = 'Sales Officer';
+            if($childsPointsFirstRow >= 160){
+                $childsPointsFirstRowRank = 'Asst. Sales Manager';
+            }
+            else if($childsPointsFirstRow >= 40){
+                $childsPointsFirstRowRank = 'Sales Officer';
+            }
 
 
-        if($totalPoints >= 131200){
-            $customerPercentage = 50;
-            $rank = 'General Manager';
+            if($childsPointsFirstRowRank == $rank){
+                $customerPercentage = 0;
+            }
+
         }
-        else if($totalPoints >= 43720){
-            $customerPercentage = 45;
-            $rank = 'Deputy General Manager';
+        else{
+            $rank = 'Sales Officer';
+            if($childsPointsFirstRow > 0){
+                $customerPercentage = 15;
+            }
         }
-        else if($totalPoints >= 14560){
-            $customerPercentage = 40;
-            $rank = 'Asst. General Manager';
+
+
+        if($matchingBonus > 0 && $customerPercentage >= 15){
+            $firstMonthPercentage = 15;
         }
-        else if($totalPoints >= 4840){
-            $customerPercentage = 35;
-            $rank = 'Executive Sales Manager';
+        else{
+            $firstMonthPercentage = $customerPercentage;
         }
-        else if($totalPoints >= 1600){
-            $customerPercentage = 30;
-            $rank = 'Sales Manager';
-        }
-        else if($totalPoints >= 520){
-            $customerPercentage = 25;
-            $rank = 'Deputy Sales Manager';
-        }
-        else if($totalPoints > 160 && $totalCustomers > 0){
-            $customerPercentage = 20;
-            $rank = 'Asst. Sales Manager';
-        }
-        else if($totalPoints > 40 && $totalCustomers > 0){
-            $customerPercentage = 15;
-        }
-        else if($totalCustomers > 0){
-            $customerPercentage = 15;
-        }
+
 
         $directBonus = 5;
         if($userPoints < 40){
@@ -874,41 +744,60 @@ class HomeController extends Controller
             $amountToBePaidDirect += ($userAmount / 100) * $directBonus;
         }
 
+        $amountToBePaidFirstMonth = 0;
         if($childsAmountFirstRow > 0){
+
+            if(($matchingBonus > 0 && $customerPercentage >= 15) || ($totalCustomers > 0)){
+                $amountToBePaidFirstMonth = ($childsAmountFirstRow / 100) * 15;
+            }
+
             $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+
         }
 
-        if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
-            $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
+        $amountToBePaidInDirect = 0;
+        if($rank != $secondChildRank){
+            if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 40){
+                $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
+                $amountToBePaidInDirect = ($childsAmountSecondRow / 100) * 5;
+            }
+
+            if($childsAmount > 0){
+                $amountToBePaid += ($childsAmount / 100) * 5;
+                $amountToBePaidInDirect = ($childsAmount / 100) * 5;
+
+            }
         }
 
-        if($childsAmount > 0){
-            $amountToBePaid += ($childsAmount / 100) * 5;
-        }
+
 
         $amountToBePaidMatching = 0;
         if($matchingBonus > 0){
             $amountToBePaidMatching += ($childsAmountFirstRow / 100) * 1;
         }
 
-        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidMatching;
+        $totalAmountToBePaidFirstMonth = $amountToBePaidFirstMonth + $amountToBePaidDirect + $amountToBePaidInDirect + $amountToBePaidMatching;
+        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidInDirect;
 
 
 
         if($userFilerStatus == 'filer'){
+            $filerDeductionFirstMonth = ($totalAmountToBePaidFirstMonth / 100) * 12;
             $filerDeduction = ($totalAmountToBePaid / 100) * 12;
         }
         else{
+            $filerDeductionFirstMonth = ($totalAmountToBePaidFirstMonth / 100) * 15;
             $filerDeduction = ($totalAmountToBePaid / 100) * 15;
         }
 
         $computerFee = 150;
 
+        $amountToBePaidAfterDeductionFirstMonth = ($totalAmountToBePaidFirstMonth - $filerDeductionFirstMonth) - $computerFee;
         $amountToBePaidAfterDeduction = ($totalAmountToBePaid - $filerDeduction) - $computerFee;
 
 
 
-        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching'));
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching','firstMonthPercentage','totalAmountToBePaidFirstMonth','amountToBePaidFirstMonth','amountToBePaidInDirect','amountToBePaidAfterDeductionFirstMonth','filerDeductionFirstMonth'));
 
     }
 
@@ -919,7 +808,6 @@ class HomeController extends Controller
         $userAmount = $userData->amount;
         $userPoints = $userData->points;
         $userFilerStatus = $userData->filer;
-//        $userFilerStatus = 'non-filer';
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
 
@@ -930,6 +818,8 @@ class HomeController extends Controller
         $childsPointsFirstRow = 0;
         $childsPointsSecondRow = 0;
         $childsPoints = 0;
+        $firstChildRank = '';
+        $secondChildRank = '';
         $firstChilds = User::select('id','name','email','joining_code','points','amount')->where('sponsor_code', $userSponserCode)->get();
         if(!empty($firstChilds)){
 
@@ -1023,8 +913,16 @@ class HomeController extends Controller
 
                             }
 
+                            if($childsPoints == 120){
+                                $secondChildRank = 'Asst. Sales Manager';
+                            }
+
                         }
 
+                    }
+
+                    if($childsPointsSecondRow == 120){
+                        $firstChildRank = 'Asst. Sales Manager';
                     }
 
                 }
@@ -1057,42 +955,72 @@ class HomeController extends Controller
         $rank = 'Sales Officer';
 
 
+        if($childsPointsFirstRow >=120){
+
+            if($totalPoints >= 131200){
+                $customerPercentage = 50;
+                $rank = 'General Manager';
+            }
+            else if($totalPoints >= 43720){
+                $customerPercentage = 45;
+                $rank = 'Deputy General Manager';
+            }
+            else if($totalPoints >= 14560){
+                $customerPercentage = 40;
+                $rank = 'Asst. General Manager';
+            }
+            else if($totalPoints >= 4840){
+                $customerPercentage = 35;
+                $rank = 'Executive Sales Manager';
+            }
+            else if($totalPoints >= 1600){
+                $customerPercentage = 30;
+                $rank = 'Sales Manager';
+            }
+            else if($totalPoints >= 520){
+                $customerPercentage = 25;
+                $rank = 'Deputy Sales Manager';
+            }
+            else if($totalPoints >= 160 && $totalCustomers > 0){
+                $customerPercentage = 20;
+                $rank = 'Asst. Sales Manager';
+            }
+            else if($totalPoints >= 40 && $totalCustomers > 0){
+                $customerPercentage = 15;
+            }
+            else if($totalCustomers > 0){
+                $customerPercentage = 15;
+            }
+
+            $childsPointsFirstRowRank = 'Sales Officer';
+            if($childsPointsFirstRow >= 160){
+                $childsPointsFirstRowRank = 'Asst. Sales Manager';
+            }
+            else if($childsPointsFirstRow >= 40){
+                $childsPointsFirstRowRank = 'Sales Officer';
+            }
 
 
-        if($totalPoints >= 131200){
-            $customerPercentage = 50;
-            $rank = 'General Manager';
+            if($childsPointsFirstRowRank == $rank){
+                $customerPercentage = 0;
+            }
+
         }
-        else if($totalPoints >= 43720){
-            $customerPercentage = 45;
-            $rank = 'Deputy General Manager';
+        else{
+            $rank = 'Sales Officer';
+            if($childsPointsFirstRow > 0){
+                $customerPercentage = 15;
+            }
         }
-        else if($totalPoints >= 14560){
-            $customerPercentage = 40;
-            $rank = 'Asst. General Manager';
+
+
+        if($matchingBonus > 0 && $customerPercentage >= 15){
+            $firstMonthPercentage = 15;
         }
-        else if($totalPoints >= 4840){
-            $customerPercentage = 35;
-            $rank = 'Executive Sales Manager';
+        else{
+            $firstMonthPercentage = $customerPercentage;
         }
-        else if($totalPoints >= 1600){
-            $customerPercentage = 30;
-            $rank = 'Sales Manager';
-        }
-        else if($totalPoints >= 520){
-            $customerPercentage = 25;
-            $rank = 'Deputy Sales Manager';
-        }
-        else if($totalPoints > 160 && $totalCustomers > 0){
-            $customerPercentage = 20;
-            $rank = 'Asst. Sales Manager';
-        }
-        else if($totalPoints > 40 && $totalCustomers > 0){
-            $customerPercentage = 15;
-        }
-        else if($totalCustomers > 0){
-            $customerPercentage = 15;
-        }
+
 
         $directBonus = 5;
         if($userPoints < 40){
@@ -1108,41 +1036,60 @@ class HomeController extends Controller
             $amountToBePaidDirect += ($userAmount / 100) * $directBonus;
         }
 
+        $amountToBePaidFirstMonth = 0;
         if($childsAmountFirstRow > 0){
+
+            if(($matchingBonus > 0 && $customerPercentage >= 15) || ($totalCustomers > 0)){
+                $amountToBePaidFirstMonth = ($childsAmountFirstRow / 100) * 15;
+            }
+
             $amountToBePaid += ($childsAmountFirstRow / 100) * $customerPercentage;
+
         }
 
-        if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 360){
-            $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
+        $amountToBePaidInDirect = 0;
+        if($rank != $secondChildRank){
+            if($childsPointsFirstRow >= 120 && $childsPointsSecondRow >= 40){
+                $amountToBePaid += (($childsAmountSecondRow) / 100) * 5;
+                $amountToBePaidInDirect = ($childsAmountSecondRow / 100) * 5;
+            }
+
+            if($childsAmount > 0){
+                $amountToBePaid += ($childsAmount / 100) * 5;
+                $amountToBePaidInDirect = ($childsAmount / 100) * 5;
+
+            }
         }
 
-        if($childsAmount > 0){
-            $amountToBePaid += ($childsAmount / 100) * 5;
-        }
+
 
         $amountToBePaidMatching = 0;
         if($matchingBonus > 0){
             $amountToBePaidMatching += ($childsAmountFirstRow / 100) * 1;
         }
 
-        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidMatching;
+        $totalAmountToBePaidFirstMonth = $amountToBePaidFirstMonth + $amountToBePaidDirect + $amountToBePaidInDirect + $amountToBePaidMatching;
+        $totalAmountToBePaid = $amountToBePaid + $amountToBePaidDirect + $amountToBePaidInDirect;
 
 
 
         if($userFilerStatus == 'filer'){
+            $filerDeductionFirstMonth = ($totalAmountToBePaidFirstMonth / 100) * 12;
             $filerDeduction = ($totalAmountToBePaid / 100) * 12;
         }
         else{
+            $filerDeductionFirstMonth = ($totalAmountToBePaidFirstMonth / 100) * 15;
             $filerDeduction = ($totalAmountToBePaid / 100) * 15;
         }
 
         $computerFee = 150;
 
+        $amountToBePaidAfterDeductionFirstMonth = ($totalAmountToBePaidFirstMonth - $filerDeductionFirstMonth) - $computerFee;
         $amountToBePaidAfterDeduction = ($totalAmountToBePaid - $filerDeduction) - $computerFee;
 
 
 
-        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching'));
+        return view('profile', compact('userData','totalCustomers','totalPoints','customerPercentage','matchingBonus','dateOfCheck','totalPercentage','rank','childsPoints','directBonus','amountToBePaid','amountToBePaidAfterDeduction','filerDeduction','computerFee','amountToBePaidDirect','totalAmountToBePaid','amountToBePaidMatching','firstMonthPercentage','totalAmountToBePaidFirstMonth','amountToBePaidFirstMonth','amountToBePaidInDirect','amountToBePaidAfterDeductionFirstMonth','filerDeductionFirstMonth'));
 
     }
     // sponsor Code Validation

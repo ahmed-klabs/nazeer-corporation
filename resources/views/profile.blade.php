@@ -66,14 +66,24 @@
                                 </tr>
 
                                 <tr>
-                                    <td><b>Direct Amount</b></td>
+                                    <td><b> 5% Direct Amount</b></td>
                                     <td>{{ "Rs. " . $amountToBePaidDirect }}</td>
                                 </tr>
 
                                 <tr>
-                                    <td><b>In-Direct Amount</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaid }}</td>
+                                    <td><b>Direct Line</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaidFirstMonth }}</td>
                                 </tr>
+
+                                <tr>
+                                    <td><b>In-Direct Line</b></td>
+                                    <td>{{ "Rs. " . $amountToBePaidInDirect }}</td>
+                                </tr>
+
+                                {{--<tr>--}}
+                                    {{--<td><b>In-Direct Amount After First Month</b></td>--}}
+                                    {{--<td>{{ "Rs. " . $amountToBePaid }}</td>--}}
+                                {{--</tr>--}}
 
                                 <tr>
                                     <td><b>Matching Bonus</b></td>
@@ -81,22 +91,38 @@
                                 </tr>
 
                                 <tr>
-                                    <td><b>Total Amount</b></td>
-                                    <td>{{ "Rs. " . $totalAmountToBePaid }}</td>
+                                    <td><b>Total Amount First Month</b></td>
+                                    <td>{{ "Rs. " . $totalAmountToBePaidFirstMonth }}</td>
                                 </tr>
+
+                                {{--<tr>--}}
+                                    {{--<td><b>Total Amount After First Month</b></td>--}}
+                                    {{--<td>{{ "Rs. " . $totalAmountToBePaid }}</td>--}}
+                                {{--</tr>--}}
+
 
                                 <tr>
                                     <td><b>Filer/Non-Filer Deduction</b></td>
-                                    <td>{{ "Rs. " . $filerDeduction }}</td>
+                                    <td>{{ "Rs. " . $filerDeductionFirstMonth }}</td>
                                 </tr>
+
+                                {{--<tr>--}}
+                                    {{--<td><b>Filer/Non-Filer Deduction</b></td>--}}
+                                    {{--<td>{{ "Rs. " . $filerDeduction }}</td>--}}
+                                {{--</tr>--}}
                                 <tr>
                                     <td><b>Computer Fee</b></td>
                                     <td>{{ "Rs. " . $computerFee }}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Amount to be paid</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidAfterDeduction }}</td>
+                                    <td>{{ "Rs. " . $amountToBePaidAfterDeductionFirstMonth }}</td>
                                 </tr>
+
+                                {{--<tr>--}}
+                                    {{--<td><b>Amount to be paid</b></td>--}}
+                                    {{--<td>{{ "Rs. " . $amountToBePaidAfterDeduction }}</td>--}}
+                                {{--</tr>--}}
 
                                 <tr>
                                     <td><b>Date Of Checque</b></td>
