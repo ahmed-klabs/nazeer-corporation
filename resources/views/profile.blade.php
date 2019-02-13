@@ -26,35 +26,39 @@
                                 </tr>
                                 <tr>
                                     <td>Rank</td>
-                                    <td>{{$rank}}</td>
+                                    <td>{{$userData['rank']}}</td>
                                 </tr>
                                 <tr>
                                     <td>Direct Points</td>
-                                    <td>{{ $userData['points'] }}</td>
+                                    <td>{{$userData['points']}}</td>
                                 </tr>
                                 <tr>
-                                    <td>In-Direct Points</td>
-                                    <td>{{ $childsPoints }}</td>
+                                    <td>Direct Line Points</td>
+                                    <td>{{$userData['direct_line_points']}}</td>
+                                </tr>
+                                <tr>
+                                    <td>In-Direct Line Points</td>
+                                    <td>{{$userData['in_direct_line_points']}}</td>
                                 </tr>
                                 <tr>
                                     <td>Total Points</td>
-                                    <td>{{ $totalPoints }}</td>
+                                    <td>{{$userData['total_points']}}</td>
                                 </tr>
                                 <tr>
                                     <td>No Of Customer Under You</td>
-                                    <td>{{ $totalCustomers }}</td>
+                                    <td>{{$userData['total_customers']}}</td>
                                 </tr>
                                 <tr>
                                     <td>Direct Bonus</td>
-                                    <td>{{ $directBonus .  "%" }}</td>
+                                    <td>{{$userData['direct_bonus_percentage'] ."%" }}</td>
                                 </tr>
                                 <tr>
                                     <td>Link Bonus</td>
-                                    <td>{{ $customerPercentage .  "%" }}</td>
+                                    <td>{{$userData['link_bonus_percentage'] ."%" }}</td>
                                 </tr>
                                 <tr>
                                     <td>Matching Bonus</td>
-                                    <td>{{ $matchingBonus .  "%" }}</td>
+                                    <td>{{$userData['matching_bonus_percentage'] ."%" }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -62,67 +66,47 @@
                             <table class="table table-striped">
                                 <tr>
                                     <td><b>Percentage</b></td>
-                                    <td>{{ $totalPercentage . "%" }}</td>
+                                    <td>{{$userData['direct_bonus_percentage'] + $userData['link_bonus_percentage'] + $userData['matching_bonus_percentage'] ."%" }}</td>
                                 </tr>
 
                                 <tr>
                                     <td><b> 5% Direct Amount</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidDirect }}</td>
+                                    <td>{{"Rs. " . $userData['direct_amount']}}</td>
                                 </tr>
 
                                 <tr>
                                     <td><b>Direct Line</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidFirstMonth }}</td>
+                                    <td>{{"Rs. " . $userData['direct_line_amount']}}</td>
                                 </tr>
 
                                 <tr>
                                     <td><b>In-Direct Line</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidInDirect }}</td>
+                                    <td>{{"Rs. " . $userData['in_direct_line_amount']}}</td>
                                 </tr>
-
-                                {{--<tr>--}}
-                                    {{--<td><b>In-Direct Amount After First Month</b></td>--}}
-                                    {{--<td>{{ "Rs. " . $amountToBePaid }}</td>--}}
-                                {{--</tr>--}}
 
                                 <tr>
                                     <td><b>Matching Bonus</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidMatching }}</td>
+                                    <td>{{"Rs. " . $userData['matching_bonus_amount']}}</td>
                                 </tr>
 
                                 <tr>
                                     <td><b>Total Amount First Month</b></td>
-                                    <td>{{ "Rs. " . $totalAmountToBePaidFirstMonth }}</td>
+                                    <td>{{"Rs. " . $userData['total_amount']}}</td>
                                 </tr>
-
-                                {{--<tr>--}}
-                                    {{--<td><b>Total Amount After First Month</b></td>--}}
-                                    {{--<td>{{ "Rs. " . $totalAmountToBePaid }}</td>--}}
-                                {{--</tr>--}}
-
 
                                 <tr>
                                     <td><b>Filer/Non-Filer Deduction</b></td>
-                                    <td>{{ "Rs. " . $filerDeductionFirstMonth }}</td>
+                                    <td>{{"Rs. " . $filerDeduction}}</td>
                                 </tr>
 
-                                {{--<tr>--}}
-                                    {{--<td><b>Filer/Non-Filer Deduction</b></td>--}}
-                                    {{--<td>{{ "Rs. " . $filerDeduction }}</td>--}}
-                                {{--</tr>--}}
                                 <tr>
                                     <td><b>Computer Fee</b></td>
-                                    <td>{{ "Rs. " . $computerFee }}</td>
+                                    <td>{{"Rs. " . $computerFee}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Amount to be paid</b></td>
-                                    <td>{{ "Rs. " . $amountToBePaidAfterDeductionFirstMonth }}</td>
+                                    <td>{{"Rs. " . $amountToBePaidAfterDeduction}}</td>
                                 </tr>
-
-                                {{--<tr>--}}
-                                    {{--<td><b>Amount to be paid</b></td>--}}
-                                    {{--<td>{{ "Rs. " . $amountToBePaidAfterDeduction }}</td>--}}
-                                {{--</tr>--}}
 
                                 <tr>
                                     <td><b>Date Of Checque</b></td>
