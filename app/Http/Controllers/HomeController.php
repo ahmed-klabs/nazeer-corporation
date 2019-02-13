@@ -1300,20 +1300,20 @@ class HomeController extends Controller
 
             $total_amount = $direct_amount + $direct_line_amount + $in_direct_line_amount + $matching_bonus_amount;
 
-            echo "<br/>";
-            echo "direct_line_points: " . ($direct_line_points) . "<br/>";
-            echo "in_direct_line_points: " . ($in_direct_line_points) . "<br/>";
-            echo "total_points: " . ($total_points) . "<br/>";
-            echo "total_customers: " . ($total_customers) . "<br/>";
-            echo "direct_bonus_percentage: " . ($direct_bonus_percentage) . "<br/>";
-            echo "link_bonus_percentage: " . ($link_bonus_percentage) . "<br/>";
-            echo "rank: " . ($rank) . "<br/>";
-            echo "matching_bonus_percentage: " . ($matching_bonus_percentage) . "<br/>";
-            echo "direct_amount: " . ($direct_amount) . "<br/>";
-            echo "direct_line_amount: " . ($direct_line_amount) . "<br/>";
-            echo "in_direct_line_amount: " . ($in_direct_line_amount) . "<br/>";
-            echo "matching_bonus_amount: " . ($matching_bonus_amount) . "<br/>";
-            echo "total_amount: " . ($total_amount) . "<br/>";
+//            echo "<br/>";
+//            echo "direct_line_points: " . ($direct_line_points) . "<br/>";
+//            echo "in_direct_line_points: " . ($in_direct_line_points) . "<br/>";
+//            echo "total_points: " . ($total_points) . "<br/>";
+//            echo "total_customers: " . ($total_customers) . "<br/>";
+//            echo "direct_bonus_percentage: " . ($direct_bonus_percentage) . "<br/>";
+//            echo "link_bonus_percentage: " . ($link_bonus_percentage) . "<br/>";
+//            echo "rank: " . ($rank) . "<br/>";
+//            echo "matching_bonus_percentage: " . ($matching_bonus_percentage) . "<br/>";
+//            echo "direct_amount: " . ($direct_amount) . "<br/>";
+//            echo "direct_line_amount: " . ($direct_line_amount) . "<br/>";
+//            echo "in_direct_line_amount: " . ($in_direct_line_amount) . "<br/>";
+//            echo "matching_bonus_amount: " . ($matching_bonus_amount) . "<br/>";
+//            echo "total_amount: " . ($total_amount) . "<br/>";
 
 
             // update sponsor
@@ -1339,23 +1339,23 @@ class HomeController extends Controller
             $sponsor4_rank = '';
             if(!empty($sponsor1_data)){
                 $sponsor1_rank = $sponsor1_data->rank;
-                echo "sponsor1_name: " . ($sponsor1_data->name) . "<br/>";
-                echo "<br/>";
+//                echo "sponsor1_name: " . ($sponsor1_data->name) . "<br/>";
+//                echo "<br/>";
             }
             if(!empty($sponsor2_data)){
                 $sponsor2_rank = $sponsor2_data->rank;
-                echo "sponsor2_name: " . ($sponsor2_data->name) . "<br/>";
-                echo "<br/>";
+//                echo "sponsor2_name: " . ($sponsor2_data->name) . "<br/>";
+//                echo "<br/>";
             }
             if(!empty($sponsor3_data)){
                 $sponsor3_rank = $sponsor3_data->rank;
-                echo "sponsor3_name: " . ($sponsor3_data->name) . "<br/>";
-                echo "<br/>";
+//                echo "sponsor3_name: " . ($sponsor3_data->name) . "<br/>";
+//                echo "<br/>";
             }
             if(!empty($sponsor4_data)){
                 $sponsor4_rank = $sponsor4_data->rank;
-                echo "sponsor4_name: " . ($sponsor4_data->name) . "<br/>";
-                echo "<br/>";
+//                echo "sponsor4_name: " . ($sponsor4_data->name) . "<br/>";
+//                echo "<br/>";
             }
 
 
@@ -1377,71 +1377,71 @@ class HomeController extends Controller
 
             if($rank == $sponsor3_rank && $rank == $sponsor2_rank && $rank == $sponsor1_rank){
                 if(!empty($sponsor4_data)){
-                    echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor4_data->id,$request->points);
                 }
                 else{
-                    echo " sponsor4_data does not exists <br/>";
-                    echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
+//                    echo " sponsor4_data does not exists <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor3_data->id,$request->points);
                 }
 
             }
             else if($rank == $sponsor2_rank && $rank == $sponsor1_rank){
                 if(!empty($sponsor3_data)){
-                    echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor3_data->id,$request->points);
 
                     if(!empty($sponsor4_data)){
-                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor4_data->id,$request->points);
                     }
 
                 }
                 else{
-                    echo " sponsor3_data does not exists <br/>";
-                    echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
+//                    echo " sponsor3_data does not exists <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor2_data->id,$request->points);
                 }
 
             }
             else if($rank == $sponsor1_rank){
                 if(!empty($sponsor2_data)){
-                    echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor2_data->id,$request->points);
 
                     if(!empty($sponsor3_data)){
-                        echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor3_data->id,$request->points);
                     }
                     if(!empty($sponsor4_data)){
-                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor4_data->id,$request->points);
                     }
 
                 }
                 else{
-                    echo " sponsor2_data does not exists <br/>";
-                    echo " 5% of this customer amount to ". $sponsor1_data->name ." <br/>";
+//                    echo " sponsor2_data does not exists <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor1_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor1_data->id,$request->points);
                 }
 
             }
             else{
                 if(!empty($sponsor1_data)){
-                    echo " 5% of this customer amount to ". $sponsor1_data->name ." <br/>";
+//                    echo " 5% of this customer amount to ". $sponsor1_data->name ." <br/>";
                     $this->update_sponsor_indirect_points($sponsor1_data->id,$request->points);
 
                     if(!empty($sponsor2_data)){
-                        echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor2_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor2_data->id,$request->points);
                     }
                     if(!empty($sponsor3_data)){
-                        echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor3_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor3_data->id,$request->points);
                     }
                     if(!empty($sponsor4_data)){
-                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
+//                        echo " 5% of this customer amount to ". $sponsor4_data->name ." <br/>";
                         $this->update_sponsor_indirect_points($sponsor4_data->id,$request->points);
                     }
                 }
@@ -1487,8 +1487,15 @@ class HomeController extends Controller
             $rank_sponsor1 = 'Deputy Sales Manager';
         }
         else if($total_points_sponsor1 >= 160 && $total_customers > 0){
-            $link_bonus_percentage_sponsor1 = 20;
-            $rank_sponsor1 = 'Asst. Sales Manager';
+            if($sponsor1_data->direct_line_points >= 120){
+                $link_bonus_percentage_sponsor1 = 20;
+                $rank_sponsor1 = 'Asst. Sales Manager';
+            }
+            else{
+                $link_bonus_percentage_sponsor1 = 15;
+                $rank_sponsor1 = 'Sales Officer';
+            }
+
         }
         else if($total_points_sponsor1 >= 40 && $total_customers > 0){
             $link_bonus_percentage_sponsor1 = 15;
