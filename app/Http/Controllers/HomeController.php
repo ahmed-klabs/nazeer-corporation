@@ -1279,8 +1279,14 @@ class HomeController extends Controller
                 $rank = 'Deputy Sales Manager';
             }
             else if($total_points >= 160 && $userCount > 0){
-                $link_bonus_percentage = 20;
-                $rank = 'Asst. Sales Manager';
+                if($sponsor_data->direct_line_points >= 120){
+                    $link_bonus_percentage = 20;
+                    $rank = 'Asst. Sales Manager';
+                }
+                else{
+                    $link_bonus_percentage = 15;
+                    $rank = 'Sales Officer';
+                }
             }
             else if($total_points >= 40 && $userCount > 0){
                 $link_bonus_percentage = 15;
