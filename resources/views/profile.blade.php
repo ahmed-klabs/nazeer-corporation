@@ -26,7 +26,7 @@
                                 </tr>
                                 <tr>
                                     <td>Rank</td>
-                                    <td>{{$userData['rank']}}</td>
+                                    <td>{{$userRank}}</td>
                                 </tr>
                                 <tr>
                                     <td>Direct Points</td>
@@ -54,7 +54,7 @@
                                 </tr>
                                 <tr>
                                     <td>Link Bonus</td>
-                                    <td>{{$userData['link_bonus_percentage'] ."%" }}</td>
+                                    <td>{{$per ."%" }}</td>
                                 </tr>
                                 <tr>
                                     <td>Matching Bonus</td>
@@ -91,7 +91,7 @@
 
                                 <tr>
                                     <td><b>Total Amount First Month</b></td>
-                                    <td>{{"Rs. " . $userData['total_amount']}}</td>
+                                    <td>{{"Rs. " . $total_amount }}</td>
                                 </tr>
 
                                 <tr>
