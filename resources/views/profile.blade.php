@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td>In-Direct Line Points</td>
-                                    <td>{{$userData['in_direct_line_points']}}</td>
+                                    <td>{{$indPoints}}</td>
                                 </tr>
                                 <tr>
                                     <td>Total Points</td>

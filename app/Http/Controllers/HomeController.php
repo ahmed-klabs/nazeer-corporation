@@ -704,6 +704,10 @@ class HomeController extends Controller
 
         $sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
 
+        $indPoints = $userData->total_points - $userData->points;
+        $indPoints = $indPoints - $userData->direct_line_points;
+
+
         if($sum_amount >= $userData->total_amount){
             $total_amount = $sum_amount;
         }
@@ -898,7 +902,7 @@ class HomeController extends Controller
 
         $per = $userData->link_bonus_percentage;
 
-        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per'));
+        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints'));
 
     }
 
@@ -908,6 +912,10 @@ class HomeController extends Controller
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
 		$sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
+
+        $indPoints = $userData->total_points - $userData->points;
+        $indPoints = $indPoints - $userData->direct_line_points;
+
 
         if($sum_amount >= $userData->total_amount){
             $total_amount = $sum_amount;
@@ -1105,7 +1113,7 @@ class HomeController extends Controller
 //        die();
 
 
-        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per'));
+        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints'));
 
     }
 
@@ -2213,37 +2221,50 @@ class HomeController extends Controller
 
         $link_bonus_percentage_sponsor1 = 15;
         $rank_sponsor1 = 1;
-        if($child6 >= 3279){
+        if($child7 >= 3279){
+            $cond_match = 'chield7';
             $link_bonus_percentage_sponsor1 = 50;
             $rank_sponsor1 = 8;
         }
-        else if($child5 >= 1092){
+        elseif($child6 >= 1092){ //3279
+            $cond_match = 'chield6';
+            $link_bonus_percentage_sponsor1 = 50;
+            $rank_sponsor1 = 8;
+        }
+        else if($child5 >= 363){ //1092
+            $cond_match = 'chield5';
             $link_bonus_percentage_sponsor1 = 45;
             $rank_sponsor1 = 7;
         }
-        else if($child4 >= 363){
+        else if($child4 >= 120){ //363
+            $cond_match = 'chield4';
             $link_bonus_percentage_sponsor1 = 40;
             $rank_sponsor1 = 6;
         }
-        else if($child3 >= 120){
+        else if($child3 >= 39){ //120
+            $cond_match = 'chield3';
             $link_bonus_percentage_sponsor1 = 35;
             $rank_sponsor1 = 5;
         }
-        else if($child2 >= 39){
+        else if($child2 >= 12){ //39
+            $cond_match = 'chield2';
             $link_bonus_percentage_sponsor1 = 30;
             $rank_sponsor1 = 4;
         }
-        else if($child1 >= 12){
+        else if($child1 >= 3){ //12
+            $cond_match = 'chield1';
             $link_bonus_percentage_sponsor1 = 25;
             $rank_sponsor1 = 3;
         }
         else{
             $frPoints = $sponsor1_data->direct_line_points + $customer_points;
             if($frPoints >= 120 && $sponsor1_data->direct_customer >= 3  && $sponsor1_data->points >= 40){
+                $cond_match = 'else 1';
                 $link_bonus_percentage_sponsor1 = 20;
                 $rank_sponsor1 = 2;
             }
             else{
+                $cond_match = 'else 2';
                 $link_bonus_percentage_sponsor1 = 15;
                 $rank_sponsor1 = 1;
             }
@@ -2282,7 +2303,16 @@ class HomeController extends Controller
             'matching_bonus_amount' => $sponsor1_data->matching_bonus_amount,
             'total_amount' => $total_amount_sponsor1,
             'rank' => $rank_sponsor1,
-            'direct_customer' => $sponsor1_data->direct_customer
+            'direct_customer' => $sponsor1_data->direct_customer,
+            'cond_match' => $cond_match,
+            'child1' => $child1,
+            'child2' => $child2,
+            'child3' => $child3,
+            'child4' => $child4,
+            'child5' => $child5,
+            'child6' => $child6,
+            'child7' => $child7,
+            'child8' => $child8
         ]);
 
 
