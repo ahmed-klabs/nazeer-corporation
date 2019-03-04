@@ -77,6 +77,7 @@
                                                                                                                                                             @for ($n = 0; $n < count($grandSeven); $n++)
                                                                                                                                                                 @if($grandSeven[$n]->sponsor_code == $grandSix[$m]->joining_code)
                                                                                                                                                                     <li>
+                                                                                                                                                                        {{$grandSeven[$n]->name}}
                                                                                                                                                                         <a href="#">{{$grandSeven[$n]->name}}</a>
 
 
