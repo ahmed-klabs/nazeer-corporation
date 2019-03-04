@@ -80,17 +80,17 @@
                                                                                                                                                                         <a href="#">{{$grandSeven[$n]->name}}</a>
 
 
-                                                                                                                                                                        <ul>
-                                                                                                                                                                            @foreach($grandChildArray8 as $grandEight)
-                                                                                                                                                                                @for ($o = 0; $o < count($grandEight); $o++)
-                                                                                                                                                                                    @if($grandEight[$o]->sponsor_code == $grandSeven[$n]->joining_code)
-                                                                                                                                                                                        <li>
-                                                                                                                                                                                            <a href="#">{{$grandEight[$o]->name}}</a>
-                                                                                                                                                                                        </li>
-                                                                                                                                                                                    @endif
-                                                                                                                                                                                @endfor
-                                                                                                                                                                            @endforeach
-                                                                                                                                                                        </ul>
+                                                                                                                                                                        {{--<ul>--}}
+                                                                                                                                                                            {{--@foreach($grandChildArray8 as $grandEight)--}}
+                                                                                                                                                                                {{--@for ($o = 0; $o < count($grandEight); $o++)--}}
+                                                                                                                                                                                    {{--@if($grandEight[$o]->sponsor_code == $grandSeven[$n]->joining_code)--}}
+                                                                                                                                                                                        {{--<li>--}}
+                                                                                                                                                                                            {{--<a href="#">{{$grandEight[$o]->name}}</a>--}}
+                                                                                                                                                                                        {{--</li>--}}
+                                                                                                                                                                                    {{--@endif--}}
+                                                                                                                                                                                {{--@endfor--}}
+                                                                                                                                                                            {{--@endforeach--}}
+                                                                                                                                                                        {{--</ul>--}}
 
 
                                                                                                                                                                     </li>
