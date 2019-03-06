@@ -77,21 +77,24 @@
                                                                                                                                                             @for ($n = 0; $n < count($grandSeven); $n++)
                                                                                                                                                                 @if($grandSeven[$n]->sponsor_code == $grandSix[$m]->joining_code)
                                                                                                                                                                     <li>
-                                                                                                                                                                        {{$grandSeven[$n]->name}}
                                                                                                                                                                         <a href="#">{{$grandSeven[$n]->name}}</a>
 
 
-                                                                                                                                                                        {{--<ul>--}}
-                                                                                                                                                                            {{--@foreach($grandChildArray8 as $grandEight)--}}
-                                                                                                                                                                                {{--@for ($o = 0; $o < count($grandEight); $o++)--}}
-                                                                                                                                                                                    {{--@if($grandEight[$o]->sponsor_code == $grandSeven[$n]->joining_code)--}}
-                                                                                                                                                                                        {{--<li>--}}
-                                                                                                                                                                                            {{--<a href="#">{{$grandEight[$o]->name}}</a>--}}
-                                                                                                                                                                                        {{--</li>--}}
-                                                                                                                                                                                    {{--@endif--}}
-                                                                                                                                                                                {{--@endfor--}}
-                                                                                                                                                                            {{--@endforeach--}}
-                                                                                                                                                                        {{--</ul>--}}
+                                                                                                                                                                        <ul>
+                                                                                                                                                                            @foreach($grandChildArray8 as $grandEight)
+                                                                                                                                                                                @for ($o = 0; $o < count($grandEight); $o++)
+                                                                                                                                                                                    <li>
+                                                                                                                                                                                        <a href="#">{{$grandEight[$o]->name}}</a>
+                                                                                                                                                                                    </li>
+
+                                                                                                                                                                                    @if($grandEight[$o]->sponsor_code == $grandSeven[$n]->joining_code)
+                                                                                                                                                                                        <li>
+                                                                                                                                                                                            <a href="#">{{$grandEight[$o]->name}}</a>
+                                                                                                                                                                                        </li>
+                                                                                                                                                                                    @endif
+                                                                                                                                                                                @endfor
+                                                                                                                                                                            @endforeach
+                                                                                                                                                                        </ul>
 
 
                                                                                                                                                                     </li>
