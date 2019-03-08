@@ -26,6 +26,7 @@ Route::get('/profile','HomeController@profile');
 Route::get('/user/{id}','HomeController@user_profile');
 Route::post('/invite-user', 'InviteUserController@usersHierarchy')->name('home');
 Route::get('/hierarchy', 'FamilyTreeController@index');
+Route::get('/roots_data', 'FamilyTreeController@getData');
 
 // Sponsor code validation Route
 Route::post('/checkChild', 'HomeController@checkChild');
