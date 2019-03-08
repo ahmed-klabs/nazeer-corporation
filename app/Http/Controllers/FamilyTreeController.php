@@ -135,20 +135,50 @@ class FamilyTreeController extends Controller
     }
 
     function getData() {
-        $childs = User::select('id','name', 'sponsor_code', 'joining_code', 'filer')->get();
+        $childs = User::select('id','name', 'rank', 'sponsor_code', 'joining_code', 'filer')->get();
 
         $data = [];
         $i = 0;
         foreach ($childs as $child){
+
+            $userRank = 'Sales Officer';
+
+            if($child->rank >= 8){
+                $userRank = 'General Manager';
+            }
+            else if($child->rank == 7){
+                $userRank = 'Deputy General Manager';
+            }
+            else if($child->rank == 6){
+                $userRank = 'Asst. General Manager';
+            }
+            else if($child->rank == 5){
+                $userRank = 'Executive Sales Manager';
+            }
+            else if($child->rank == 4){
+                $userRank = 'Sales Manager';
+            }
+            else if($child->rank == 3){
+                $userRank = 'Deputy Sales Manager';
+            }
+            else if($child->rank == 2){
+                $userRank = 'Asst. Sales Manager';
+            }
+            else if($child->rank == 1){
+                $userRank = 'Sales Officer';
+            }
+
+
+
             if($i == 0){
                 $data[$i]['key'] = $child->joining_code;
-                $data[$i]['name'] = $child->name;
+                $data[$i]['name'] = $child->name . "\n Rank: " . $userRank;
                 $data[$i]['gender'] = $child->filer;
             }
             else{
                 $data[$i]['key'] = $child->joining_code;
                 $data[$i]['parent'] = $child->sponsor_code;
-                $data[$i]['name'] = $child->name;
+                $data[$i]['name'] = $child->name . "\n Rank: " . $userRank;
                 $data[$i]['gender'] = $child->filer;
             }
             $i++;
