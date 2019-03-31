@@ -35,7 +35,7 @@
                                     <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter Name" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('father_name') ? 'has-error': ''; ?>">
-                                    <label for="father_name">Father Name</label>
+                                    <label for="father_name">Father/Husband Name</label>
                                     <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father Name" required>
                                 </div>
                                 <div class="form-group <?php if(isset($error)) $error->has('cnic') ? 'has-error': ''; ?>">

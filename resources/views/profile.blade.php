@@ -28,6 +28,18 @@
                                     <td>Rank</td>
                                     <td>{{$userRank}}</td>
                                 </tr>
+								<tr>
+                                    <td>Joining Code</td>
+                                    <td>{{$userData['joining_code']}}</td>
+                                </tr>
+								<tr>
+                                    <td>Sponser Code</td>
+                                    <td>{{$userData['sponsor_code']}}</td>
+                                </tr>
+								<tr>
+                                    <td>Blood Group</td>
+                                    <td>{{$userData['blood_group']}}</td>
+                                </tr>
                                 <tr>
                                     <td>Direct Points</td>
                                     <td>{{$userData['points']}}</td>
@@ -109,8 +121,12 @@
                                 </tr>
 
                                 <tr>
-                                    <td><b>Date Of Checque</b></td>
+                                    <td><b>Date Of Cheque</b></td>
                                     <td>{{ $dateOfCheck  }}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Last Month Cheque</b></td>
+                                    <td>{{ "Rs. " . $lastMonthCheckAmount  }}</td>
                                 </tr>
                             </table>
                         </div>

@@ -702,6 +702,16 @@ class HomeController extends Controller
         $userData = Auth::User();
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
 
+        $first_day_of_previous_month  = date("Y-m-d", strtotime("first day of previous month"));
+        $last_day_of_previous_month =  date("Y-m-d", strtotime("last day of previous month"));
+
+        $lastMonthCheck = DB::table('user_logs')
+            ->where('sponser_id',$userData->id)
+            ->whereBetween('datetime', array($first_day_of_previous_month." 00:00:00", $last_day_of_previous_month." 23:59:59"))
+            ->orderBy('id', 'desc')
+            ->first();
+
+
         $sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
 
         $indPoints = $userData->total_points - $userData->points;
@@ -717,14 +727,17 @@ class HomeController extends Controller
 
         if($userData->filer == 'filer'){
             $filerDeduction = ($total_amount / 100) * 12;
+            $filerDeductionLastMonth = ($lastMonthCheck->total_amount / 100) * 12;
         }
         else{
             $filerDeduction = ($total_amount / 100) * 15;
+            $filerDeductionLastMonth = ($lastMonthCheck->total_amount / 100) * 15;
         }
 
         $computerFee = 150;
 
         $amountToBePaidAfterDeduction = ($total_amount - $filerDeduction) - $computerFee;
+        $lastMonthCheckAmount = ($lastMonthCheck->total_amount - $filerDeductionLastMonth) - $computerFee;
 
 //        $rPoints = 0;
 //        $rCustomer = 0;
@@ -902,7 +915,7 @@ class HomeController extends Controller
 
         $per = $userData->link_bonus_percentage;
 
-        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints'));
+        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints','lastMonthCheckAmount'));
 
     }
 
@@ -910,6 +923,17 @@ class HomeController extends Controller
         $userData = User::find($id);
 
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
+
+        $first_day_of_previous_month  = date("Y-m-d", strtotime("first day of previous month"));
+        $last_day_of_previous_month =  date("Y-m-d", strtotime("last day of previous month"));
+
+        $lastMonthCheck = DB::table('user_logs')
+            ->where('sponser_id',$userData->id)
+            ->whereBetween('datetime', array($first_day_of_previous_month." 00:00:00", $last_day_of_previous_month." 23:59:59"))
+            ->orderBy('id', 'desc')
+            ->first();
+
+
 
 		$sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
 
@@ -926,14 +950,17 @@ class HomeController extends Controller
 
         if($userData->filer == 'filer'){
             $filerDeduction = ($total_amount / 100) * 12;
+            $filerDeductionLastMonth = ($lastMonthCheck->total_amount / 100) * 12;
         }
         else{
             $filerDeduction = ($total_amount / 100) * 15;
+            $filerDeductionLastMonth = ($lastMonthCheck->total_amount / 100) * 15;
         }
 
         $computerFee = 150;
 
         $amountToBePaidAfterDeduction = ($total_amount - $filerDeduction) - $computerFee;
+        $lastMonthCheckAmount = ($lastMonthCheck->total_amount - $filerDeductionLastMonth) - $computerFee;
 
 
 
@@ -1113,7 +1140,7 @@ class HomeController extends Controller
 //        die();
 
 
-        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints'));
+        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints','lastMonthCheckAmount'));
 
     }
 
@@ -2221,37 +2248,37 @@ class HomeController extends Controller
 
         $link_bonus_percentage_sponsor1 = 15;
         $rank_sponsor1 = 1;
-        if($child7 >= 3279){
+        if($child7 >= 2187){
             $cond_match = 'chield7';
             $link_bonus_percentage_sponsor1 = 50;
             $rank_sponsor1 = 8;
         }
-        elseif($child6 >= 1092){ //3279
+        elseif($child6 >= 729){ //3279
             $cond_match = 'chield6';
             $link_bonus_percentage_sponsor1 = 50;
             $rank_sponsor1 = 8;
         }
-        else if($child5 >= 363){ //1092
+        else if($child5 >= 243){ //1092
             $cond_match = 'chield5';
             $link_bonus_percentage_sponsor1 = 45;
             $rank_sponsor1 = 7;
         }
-        else if($child4 >= 120){ //363
+        else if($child4 >= 81){
             $cond_match = 'chield4';
             $link_bonus_percentage_sponsor1 = 40;
             $rank_sponsor1 = 6;
         }
-        else if($child3 >= 39){ //120
+        else if($child3 >= 27){
             $cond_match = 'chield3';
             $link_bonus_percentage_sponsor1 = 35;
             $rank_sponsor1 = 5;
         }
-        else if($child2 >= 12){ //39
+        else if($child2 >= 9){
             $cond_match = 'chield2';
             $link_bonus_percentage_sponsor1 = 30;
             $rank_sponsor1 = 4;
         }
-        else if($child1 >= 3){ //12
+        else if($child1 >= 3){
             $cond_match = 'chield1';
             $link_bonus_percentage_sponsor1 = 25;
             $rank_sponsor1 = 3;
@@ -2350,7 +2377,8 @@ class HomeController extends Controller
             'matching_bonus_amount' => $sponsor1_data->matching_bonus_amount,
             'total_amount' => $total_amount_sponsor1,
             'rank' => $sponsor1_data->rank,
-            'direct_customer' => $sponsor1_data->direct_customer
+            'direct_customer' => $sponsor1_data->direct_customer,
+            'datetime' => date("Y-m-d H:i:s")
         ]);
 
     }
