@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::get('/updateapp', function()
+{
+    \Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
