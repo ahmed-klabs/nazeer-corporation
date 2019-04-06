@@ -18,7 +18,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-md-6">
-                        <div class="main-tbl">
+                        <div class="main-tbl" style="width: 300px;">
                             <table class="table table-striped">
                                 <tr>
                                     <td>Name</td>
@@ -74,7 +74,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="sub-tbl">
+                        <div class="sub-tbl" style="width: 300px;">
                             <table class="table table-striped">
                                 <tr>
                                     <td><b>Percentage</b></td>
@@ -132,9 +132,9 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="profile-image">
-                            <img src="{{ asset('images/max-rehkopf.png') }}">
-                        </div>
+                        {{--<div class="profile-image">--}}
+                            {{--<img src="{{ asset('images/max-rehkopf.png') }}">--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
