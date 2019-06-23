@@ -767,48 +767,48 @@ class HomeController extends Controller
 
 
             if($rPoints >= 131200 && $rCustomers >= 3279 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 50;
+                $link_bonus_percentage = 25;
                 $rank = 8;
             }
             else if($rPoints >= 43720 && $rCustomers >= 1092 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 45;
+                $link_bonus_percentage = 22.5;
                 $rank = 7;
             }
             else if($rPoints >= 14560 && $rCustomers >= 363 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 40;
+                $link_bonus_percentage = 20;
                 $rank = 6;
             }
             else if($rPoints >= 4840 && $rCustomers >= 120 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 35;
+                $link_bonus_percentage = 17.5;
                 $rank = 5;
             }
             else if($rPoints >= 1600 && $rCustomers >= 39 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 30;
+                $link_bonus_percentage = 15;
                 $rank = 4;
             }
             else if($rPoints >= 520 && $rCustomers >= 12 && $sponsor_data->points >= 40){
-                $link_bonus_percentage = 25;
+                $link_bonus_percentage = 12.5;
                 $rank = 3;
             }
             else if($rPoints >= 120 && $rCustomers >= 3){
                 $sponser_future_direct_line_points = $sponsor_data->direct_line_points + $request->points;
                 if($sponser_future_direct_line_points > 120 && $sponsor_data->points >= 40){
 //                if($rPoints > 120){
-                    $link_bonus_percentage = 20;
+                    $link_bonus_percentage = 10;
                     $rank = 2;
                 }
 //                else if($rPoints >= 120){
                 else if($sponser_future_direct_line_points >= 120 && $sponsor_data->points >= 40){
-                    $link_bonus_percentage = 15;
+                    $link_bonus_percentage = 7.5;
                     $rank = 2;
                 }
                 else{
-                    $link_bonus_percentage = 15;
+                    $link_bonus_percentage = 7.5;
                     $rank = 1;
                 }
             }
             else if($total_points >= 40 && $userCount > 0){
-                $link_bonus_percentage = 15;
+                $link_bonus_percentage = 7.5;
             }
 
             $direct_amount = $sponsor_data->direct_amount;
@@ -1224,53 +1224,53 @@ class HomeController extends Controller
 
         }
 
-        $link_bonus_percentage_sponsor1 = 15;
+        $link_bonus_percentage_sponsor1 = 7.5;
         $rank_sponsor1 = 1;
         if($child7 >= 2187){
             $cond_match = 'chield7';
-            $link_bonus_percentage_sponsor1 = 50;
+            $link_bonus_percentage_sponsor1 = 25;
             $rank_sponsor1 = 8;
         }
         elseif($child6 >= 729){ //3279
             $cond_match = 'chield6';
-            $link_bonus_percentage_sponsor1 = 50;
+            $link_bonus_percentage_sponsor1 = 25;
             $rank_sponsor1 = 8;
         }
         else if($child5 >= 243){ //1092
             $cond_match = 'chield5';
-            $link_bonus_percentage_sponsor1 = 45;
+            $link_bonus_percentage_sponsor1 = 22.5;
             $rank_sponsor1 = 7;
         }
         else if($child4 >= 81){
             $cond_match = 'chield4';
-            $link_bonus_percentage_sponsor1 = 40;
+            $link_bonus_percentage_sponsor1 = 20;
             $rank_sponsor1 = 6;
         }
         else if($child3 >= 27){
             $cond_match = 'chield3';
-            $link_bonus_percentage_sponsor1 = 35;
+            $link_bonus_percentage_sponsor1 = 17.5;
             $rank_sponsor1 = 5;
         }
         else if($child2 >= 9){
             $cond_match = 'chield2';
-            $link_bonus_percentage_sponsor1 = 30;
+            $link_bonus_percentage_sponsor1 = 15;
             $rank_sponsor1 = 4;
         }
         else if($child1 >= 3){
             $cond_match = 'chield1';
-            $link_bonus_percentage_sponsor1 = 25;
+            $link_bonus_percentage_sponsor1 = 12.5;
             $rank_sponsor1 = 3;
         }
         else{
             $frPoints = $sponsor1_data->direct_line_points + $customer_points;
             if($frPoints >= 120 && $sponsor1_data->direct_customer >= 3  && $sponsor1_data->points >= 40){
                 $cond_match = 'else 1';
-                $link_bonus_percentage_sponsor1 = 20;
+                $link_bonus_percentage_sponsor1 = 10;
                 $rank_sponsor1 = 2;
             }
             else{
                 $cond_match = 'else 2';
-                $link_bonus_percentage_sponsor1 = 15;
+                $link_bonus_percentage_sponsor1 = 7.5;
                 $rank_sponsor1 = 1;
             }
         }

@@ -107,7 +107,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><b>Filer/Non-Filer Deduction</b></td>
+                                    <td><b>All Taxes Deduction</b></td>
                                     <td>{{"Rs. " . $filerDeduction}}</td>
                                 </tr>
 
