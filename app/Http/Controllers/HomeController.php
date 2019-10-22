@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
+use App\BonusDetail;
 use Illuminate\Http\Request;
 use Session;
 use App\User;
@@ -27,41 +29,56 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // For home page
     public function index(){
 
         $userData = Auth::User();
+        // dd($userData);
         $userCode = $userData->joining_code;
-        $totalPoints = $userData->total_points;
+        $totalPoints = User::select(\DB::raw('SUM(points) as total_points'))->get();
+        $totalPoints = $totalPoints[0]->total_points;
 
-        if($userData->rank >= 8){
-            $userRank = 'General Manager';
-        }
-        else if($userData->rank == 7){
-            $userRank = 'Deputy General Manager';
-        }
-        else if($userData->rank == 6){
-            $userRank = 'Asst. General Manager';
-        }
-        else if($userData->rank == 5){
-            $userRank = 'Executive Sales Manager';
-        }
-        else if($userData->rank == 4){
-            $userRank = 'Sales Manager';
-        }
-        else if($userData->rank == 3){
-            $userRank = 'Deputy Sales Manager';
-        }
-        else if($userData->rank == 2){
-            $userRank = 'Asst. Sales Manager';
-        }
-        else if($userData->rank == 1){
-            $userRank = 'Sales Officer';
-        }
+        if($userData->role != "admin" && $userData->role != "operator"){
 
-        $rank = $userRank;
+            $totalPoints = $userData->total_points;
+            if($userData->rank >= 8){
+                $userRank = 'General Manager';
+            }
+            else if($userData->rank == 7){
+                $userRank = 'Deputy General Manager';
+            }
+            else if($userData->rank == 6){
+                $userRank = 'Asst. General Manager';
+            }
+            else if($userData->rank == 5){
+                $userRank = 'Executive Sales Manager';
+            }
+            else if($userData->rank == 4){
+                $userRank = 'Sales Manager';
+            }
+            else if($userData->rank == 3){
+                $userRank = 'Deputy Sales Manager';
+            }
+            else if($userData->rank == 2){
+                $userRank = 'Asst. Sales Manager';
+            }
+            else if($userData->rank == 1){
+                $userRank = 'Sales Officer';
+            }
+            $rank = $userRank;
+        }else{
+            $rank = "Administrator";
+        }
 
         return view('home', compact('userData','totalPoints','userCode','rank'));
 
+    }
+
+    // all users
+    public function users(){
+
+        $users = User::where('role', '!=', 'admin')->where('role', '!=', 'operator')->orderBy('id', 'desc')->get();
+        return view('users', compact('users'));
     }
 
     public function dashboard()
@@ -72,6 +89,7 @@ class HomeController extends Controller
         $sponser_name = $data->name;
         $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points','filer','cnic')->where('role','user')->where('sponsor_code',$sponser_code)->get();
 
+        $allUsers = [];
         if(!empty($users)){
             foreach($users as $user){
                 $allUsers[] = array(
@@ -239,7 +257,7 @@ class HomeController extends Controller
         $sponser_code = $data->joining_code;
         $sponser_name = $data->name;
         $users = User::select('id','name','email','contact','joining_code','joining_date','sponsor_code','points','filer','cnic')->where('role','user')->where('sponsor_code',$sponser_code)->get();
-
+        $allUsers = [];
         if(!empty($users)){
             foreach($users as $user){
                 $allUsers[] = array(
@@ -391,9 +409,7 @@ class HomeController extends Controller
 
             }
         }
-        else{
-            $allUsers = [];
-        }
+
 
 
 
@@ -489,9 +505,22 @@ class HomeController extends Controller
     }
 
     public function user_profile($id){
-        $userData = User::find($id);
 
+        $userData = User::find($id);
         $dateOfCheck = date("d/m/Y", strtotime($userData->joining_date));
+
+        $now = \Carbon\Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
+        $accounts = Account::where('user_id', $id)->get();
+
+        $ispaid = Account::where('user_id', $id)
+            ->where('month', $month)
+            ->where('year', $year)
+            ->count();
+
+
 
         $first_day_of_previous_month  = date("Y-m-d", strtotime("first day of previous month"));
         $last_day_of_previous_month =  date("Y-m-d", strtotime("last day of previous month"));
@@ -502,15 +531,15 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->first();
 
-		if(!empty($lastMonthCheck)){
-			$lastMonthCheck_total_amount = $lastMonthCheck->total_amount;
-		}
-		else
-		{
-			$lastMonthCheck_total_amount = 0;
-		}
+        if(!empty($lastMonthCheck)){
+            $lastMonthCheck_total_amount = $lastMonthCheck->total_amount;
+        }
+        else
+        {
+            $lastMonthCheck_total_amount = 0;
+        }
 
-		$sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
+        $sum_amount = $userData->direct_amount + $userData->direct_line_amount + $userData->in_direct_line_amount + $userData->matching_bonus_amount;
 
         $indPoints = $userData->total_points - $userData->points;
         $indPoints = $indPoints - $userData->direct_line_points;
@@ -536,40 +565,102 @@ class HomeController extends Controller
 
         $amountToBePaidAfterDeduction = ($total_amount - $filerDeduction) - $computerFee;
         $lastMonthCheckAmount = ($lastMonthCheck_total_amount - $filerDeductionLastMonth) - $computerFee;
-		if($lastMonthCheckAmount <= 0 ){
-			$lastMonthCheckAmount = 0;
-		}
+        if($lastMonthCheckAmount <= 0 ){
+            $lastMonthCheckAmount = 0;
+        }
 
 
-        if($userData->rank >= 8){
-            $userRank = 'General Manager';
-        }
-        else if($userData->rank == 7){
-            $userRank = 'Deputy General Manager';
-        }
-        else if($userData->rank == 6){
-            $userRank = 'Asst. General Manager';
-        }
-        else if($userData->rank == 5){
-            $userRank = 'Executive Sales Manager';
-        }
-        else if($userData->rank == 4){
-            $userRank = 'Sales Manager';
-        }
-        else if($userData->rank == 3){
-            $userRank = 'Deputy Sales Manager';
-        }
-        else if($userData->rank == 2){
-            $userRank = 'Asst. Sales Manager';
-        }
-        else if($userData->rank == 1){
-            $userRank = 'Sales Officer';
+        $bonusDetail = BonusDetail::where('user_id', $id)
+            ->where('month', $month)
+            ->where('year', $year)
+            ->first();
+
+        if(empty($bonusDetail)){
+
+
+            $bonusDetail = new BonusDetail();
+            $bonusDetail->user_id = $id;
+            $bonusDetail->direct_amount = $userData['direct_amount'];
+            $bonusDetail->direct_line_amount = $userData['direct_line_amount'];
+            $bonusDetail->in_direct_line_amount = $userData['in_direct_line_amount'];
+            $bonusDetail->matching_bonus_amount = $userData['matching_bonus_amount'];
+            $bonusDetail->tax_deduction = $filerDeduction;
+            $bonusDetail->computer_fee = $computerFee;
+            $bonusDetail->total_amount = $total_amount;
+            $bonusDetail->amount_to_be_paid = $amountToBePaidAfterDeduction;
+            $bonusDetail->month = $month;
+            $bonusDetail->year = $year;
+            $bonusDetail->save();
+
+        }else{
+
+            $bonusDetail->direct_line_amount = $userData['direct_line_amount'];
+            $bonusDetail->in_direct_line_amount = $userData['in_direct_line_amount'];
+            $bonusDetail->matching_bonus_amount = $userData['matching_bonus_amount'];
+            $bonusDetail->tax_deduction = $filerDeduction;
+            $bonusDetail->computer_fee = $computerFee;
+            $bonusDetail->total_amount = $total_amount;
+            $bonusDetail->amount_to_be_paid = $amountToBePaidAfterDeduction;
+            $bonusDetail->save();
         }
 
         $per = $userData->link_bonus_percentage;
 
-        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints','lastMonthCheckAmount'));
+//        dd($userData);
+//        return view('profile', compact('userData','total_amount','dateOfCheck','filerDeduction','computerFee','amountToBePaidAfterDeduction','userRank','per','indPoints','lastMonthCheckAmount'));
+        return view('profile', compact('userData','bonusDetail','dateOfCheck', 'accounts', 'ispaid'));
 
+    }
+    public function chequePaid($id){
+
+        $now = \Carbon\Carbon::now();
+        $year = $now->year;
+        $month = $now->month;
+
+        if(Account::where('user_id', $id)->where('year', $year)->where('month', $month)->count()){
+            return redirect('/user/'.$id);
+        }else{
+
+            $bonusDetail = BonusDetail::where('user_id', $id)->where('month', $month)->where('year', $year)->first();
+
+            $account = new Account();
+            $account->user_id = $id;
+            $account->amount = $bonusDetail->amount_to_be_paid;
+            $account->type = "CREDIT";
+            $account->detail = "Cheque ".$month."-".$year." Invoice";
+            $account->year = $year;
+            $account->month = $month;
+            $account->save();
+
+            return redirect('/user/'.$id);
+
+        }
+    }
+
+    public function userEdit($id){
+        $userData = User::where('role', '!=', 'admin')->where('role', '!=', 'operator')->findorfail($id);
+        return view('user-update', compact('userData'));
+    }
+
+    public function userUpdate(Request $request){
+        if($request->userId){
+            User::where('id', $request->userId)->update([
+                "email" => $request->email,
+                "name" => $request->name,
+                "father_name" => $request->father_name,
+                "cnic" => $request->cnic,
+                "dob" => $request->dob,
+                "address" => $request->address,
+                "contact" => $request->contact,
+                "blood_group" => $request->blood_group,
+                "nominee" => $request->nominee,
+                "nominee_cnic" => $request->nomineecnic,
+                "nominee_contact" => $request->nomineecontact,
+                "filer" => $request->filer,
+                "rank" => $request->rank,
+            ]);
+            return redirect('/user/'.$request->userId)->with('success', 'record has been updated!');
+        }
     }
 
     // sponsor Code Validation
@@ -633,11 +724,44 @@ class HomeController extends Controller
             $user->in_direct_line_amount = 0;
             $user->matching_bonus_amount = 0;
             $user->total_amount = $direct_amount_customer;
-            $user->rank = 1;
+
+            if($request->points == 40){
+                $user->rank = 1;
+            }elseif($request->points == 160){
+                $user->rank = 2;
+            }elseif($request->points == 520){
+                $user->rank = 3;
+            }elseif($request->points == 1600){
+                $user->rank = 4;
+            }elseif($request->points == 4840){
+                $user->rank = 5;
+            }elseif($request->points == 14560){
+                $user->rank = 6;
+            }elseif($request->points == 43720){
+                $user->rank = 7;
+            }elseif($request->points == 131200){
+                $user->rank = 8;
+            }
             $user->save();
+
+            $now = \Carbon\Carbon::now();
+            $year = $now->year;
+            $month = $now->month;
+
+            Account::insert([
+                "user_id" => $user->id,
+                "amount" => $request->amount,
+                "type" => "DEBIT",
+                "detail" => "New Joining",
+                "month" => $month,
+                "year" => $year,
+                "created_at" => \Carbon\Carbon::now(),
+                "updated_at" => \Carbon\Carbon::now(),
+            ]);
 
             //update sponsor data
             $sponsor_data = User::where('joining_code',$request->sponsor_code)->first();
+
             if(!empty($sponsor_data)){
                 $sponsor1_data = User::where('joining_code',$sponsor_data->sponsor_code)->first();
                 if(!empty($sponsor1_data)){
@@ -813,7 +937,7 @@ class HomeController extends Controller
 
             $direct_amount = $sponsor_data->direct_amount;
             $direct_line_amount = (($direct_line_points * 1000) / 100 ) * $link_bonus_percentage;
-            $in_direct_line_amount = (($in_direct_line_points * 1000) / 100 ) * 5;
+            $in_direct_line_amount = (($in_direct_line_points * 1000) / 100 ) * 2.5;
 
             $matching_bonus_amount = 0;
             $matching_bonus_percentage = 0;
@@ -1326,7 +1450,7 @@ class HomeController extends Controller
     public function update_sponsor_indirect_points($sponsor_id,$customer_points,$new_customer_name){
         $sponsor1_data = User::where('id',$sponsor_id)->first();
         $in_direct_line_points_sponsor1 = $sponsor1_data->in_direct_line_points + $customer_points;
-        $in_direct_line_amount_sponsor1 = (($in_direct_line_points_sponsor1 * 1000) / 100 ) * 5;
+        $in_direct_line_amount_sponsor1 = (($in_direct_line_points_sponsor1 * 1000) / 100 ) * 2.5;
         $total_amount_sponsor1 = $sponsor1_data->direct_amount + $sponsor1_data->direct_line_amount + $in_direct_line_amount_sponsor1;
 
         User::where('id',$sponsor1_data->id)->update([

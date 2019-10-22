@@ -24,11 +24,17 @@ Route::get('/updateapp', function()
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard');
+
+
+Route::get('/users','HomeController@users');
 Route::get('/user_dashboard/{id}', 'HomeController@user_dashboard');
 Route::get('/add-user','HomeController@add_user');
 Route::post('/add-user','HomeController@create_user');
 Route::get('/profile','HomeController@profile');
 Route::get('/user/{id}','HomeController@user_profile');
+Route::get('/user/{id}/edit','HomeController@userEdit');
+Route::post('/user/edit','HomeController@userUpdate');
+Route::get('/user/{id}/cheque-paid','HomeController@chequePaid');
 Route::post('/invite-user', 'InviteUserController@usersHierarchy')->name('home');
 Route::get('/hierarchy', 'FamilyTreeController@index');
 Route::get('/roots_data', 'FamilyTreeController@getData');
@@ -37,3 +43,10 @@ Route::get('/roots_data', 'FamilyTreeController@getData');
 Route::post('/checkChild', 'HomeController@checkChild');
 
 Route::post('/password-reset', 'ForgotPassword@changePassword');
+
+
+Route::get('/accounts', 'AccountController@index');
+Route::get('/accounts/user/{id}', 'AccountController@show');
+
+Route::get('/invoice', 'AccountController@invoice');
+Route::post('/invoice', 'AccountController@storeInvoice');
