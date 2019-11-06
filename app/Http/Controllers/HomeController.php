@@ -462,7 +462,7 @@ class HomeController extends Controller
         }
         else{
             $filerDeduction = ($total_amount / 100) * 15;
-            $filerDeductionLastMonth = ($lastMonthCheck_total_amount / 100) * 15;
+            $filerDeductionLastMonth = ($lastMonthCheck_total_amount / 100) * 17;
         }
 
         $computerFee = 150;
@@ -799,6 +799,7 @@ class HomeController extends Controller
                 $rank = 1;
             }
 
+            // matching bonus work
             $userDataForMatchingBonus = User::select('created_at')->where('sponsor_code', $request->sponsor_code)->get();
             $userCount = 0;
             foreach ($userDataForMatchingBonus as $dt){
@@ -918,8 +919,8 @@ class HomeController extends Controller
                 $sponser_future_direct_line_points = $sponsor_data->direct_line_points + $request->points;
                 if($sponser_future_direct_line_points > 120 && $sponsor_data->points >= 40){
 //                if($rPoints > 120){
-                    $link_bonus_percentage = 10;
-                    $rank = 2;
+//                    $link_bonus_percentage = 10;
+//                    $rank = 2;
                 }
 //                else if($rPoints >= 120){
                 else if($sponser_future_direct_line_points >= 120 && $sponsor_data->points >= 40){
@@ -1001,26 +1002,35 @@ class HomeController extends Controller
             $sponsor5_rank = '';
             $sponsor6_rank = '';
             $sponsor7_rank = '';
+
             if(!empty($sponsor1_data)){
-                $sponsor1_rank = $sponsor1_data->rank;
+
+                $sponsor1_rank = $this->getRankFunc($sponsor1_data);
+//                $sponsor1_rank = $sponsor1_data->rank;
             }
             if(!empty($sponsor2_data)){
-                $sponsor2_rank = $sponsor2_data->rank;
+                $sponsor2_rank = $this->getRankFunc($sponsor2_data);
+//                $sponsor2_rank = $sponsor2_data->rank;
             }
             if(!empty($sponsor3_data)){
-                $sponsor3_rank = $sponsor3_data->rank;
+                $sponsor3_rank = $this->getRankFunc($sponsor3_data);
+//                $sponsor3_rank = $sponsor3_data->rank;
             }
             if(!empty($sponsor4_data)){
-                $sponsor4_rank = $sponsor4_data->rank;
+                $sponsor4_rank = $this->getRankFunc($sponsor4_data);
+//                $sponsor4_rank = $sponsor4_data->rank;
             }
             if(!empty($sponsor5_data)){
-                $sponsor4_rank = $sponsor5_data->rank;
+                $sponsor5_rank = $this->getRankFunc($sponsor5_data);
+//                $sponsor4_rank = $sponsor5_data->rank;
             }
             if(!empty($sponsor6_data)){
-                $sponsor4_rank = $sponsor6_data->rank;
+                $sponsor6_rank = $this->getRankFunc($sponsor6_data);
+//                $sponsor4_rank = $sponsor6_data->rank;
             }
             if(!empty($sponsor7_data)){
-                $sponsor4_rank = $sponsor7_data->rank;
+                $sponsor7_rank = $this->getRankFunc($sponsor7_data);
+//                $sponsor4_rank = $sponsor7_data->rank;
             }
 
 
@@ -1218,6 +1228,35 @@ class HomeController extends Controller
         }
 
 
+    }
+
+    public function getRankFunc($data){
+
+        $rank = 0;
+
+        if($data->total_points >= 40 && $data->total_points < 160){
+            $rank = 1;
+        }elseif($data->total_points >= 160 && $data->total_points < 520){
+            $rank = 2;
+        }elseif($data->total_points >= 520 && $data->total_points < 1600){
+            $rank = 3;
+        }elseif($data->total_points >= 1600 && $data->total_points < 4840){
+            $rank = 4;
+        }elseif($data->total_points >= 4840 && $data->total_points < 14560){
+            $rank = 5;
+        }elseif($data->total_points >= 14560 && $data->total_points < 43720){
+            $rank = 6;
+        }elseif($data->total_points >= 43720 && $data->total_points < 131200){
+            $rank = 7;
+        }elseif($data->total_points > 131200 ){
+            $rank = 8;
+        }
+
+        User::where('id', $data->id)->update([
+            "rank" => $rank
+        ]);
+
+        return $rank;
     }
 
     public function update_sponsor_direct_points($sponsor_id,$customer_points,$total_customers,$new_customer_name){
